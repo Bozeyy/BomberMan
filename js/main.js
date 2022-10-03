@@ -310,6 +310,7 @@ addEventListener('keydown', ({key}) => {
         case 'a':
             const bomb1 = new Bomb(player1.x, player1.y, player1, true);
             bombList.push(bomb1);
+            break;
         case 'ArrowUp':
             player2.direction = "haut";
             player2.devant = false;
