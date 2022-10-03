@@ -107,7 +107,8 @@ class Player {
         this.y= y,
         this.points = 0,
         this.pv = 3,
-        this.direction = "droite"           
+        this.direction = "droite"    
+        this.devant = true;       
     }
 }
 
@@ -163,9 +164,27 @@ function afficherTabGraphique(tab) {
 
     // pour chaque joueur on l'affiche dans le tableau
     for (var i = 0; i < playerList.length; i++) {
-        var img = new Image();
-        img.src = "img/P1B.png";
-        c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+        if (playerList[i].devant) {
+            if (playerList[i].direction == "droite") {
+                var img = new Image();
+                img.src = "img/P1AKR.png";
+                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+            } else  {
+                var img = new Image();
+                img.src = "img/P1AKL.png";
+                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+            } 
+        } else {
+            if (playerList[i].direction == "droite") {
+                var img = new Image();
+                img.src = "img/P1AKDD.png";
+                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+            } else {
+                var img = new Image();
+                img.src = "img/P1AKGD.png";
+                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+            }
+        }
     }
 
     // afficher les pv des deux joeurs
@@ -268,10 +287,12 @@ addEventListener('keydown', ({key}) => {
     switch (key) {
         case 'z':
             player1.direction = "haut";
+            player1.devant = false;
             movePlayer("up", player1);
             break;
         case 's':
             player1.direction = "bas";
+            player1.devant = true;
             movePlayer("down", player1);
             break;
         case 'q':
@@ -291,10 +312,12 @@ addEventListener('keydown', ({key}) => {
             bombList.push(bomb1);
         case 'ArrowUp':
             player2.direction = "haut";
+            player2.devant = false;
             movePlayer("up", player2);
             break;
         case 'ArrowDown':
             player2.direction = "bas";
+            player2.devant = true;
             movePlayer("down", player2);
             break;
         case 'ArrowLeft':
