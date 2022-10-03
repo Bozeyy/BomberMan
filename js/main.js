@@ -137,13 +137,13 @@ function afficherTabGraphique(tab) {
                 //c.fillRect(j*50, i*50, 50, 50);
                 // mettre une image de brique de 50 par 50
                 var img = new Image();
-                img.src = "img/Brique.jpeg";
+                img.src = "img/wall.jpg";
                 c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "x") {
                 //c.fillStyle = 'white';
                 //c.fillRect(j*50, i*50, 50, 50);
                 var img = new Image();
-                img.src = "img/Terre.jpeg";
+                img.src = "img/Dirt1.jpg";
                 c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "B") {
                 //c.fillStyle = 'blue';
@@ -155,7 +155,7 @@ function afficherTabGraphique(tab) {
                 //c.fillStyle = 'red';
                 //c.fillRect(j*50, i*50, 50, 50);
                 var img = new Image();
-                img.src = "img/Terre.jpeg";
+                img.src = "img/Dirt1.jpg";
                 c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             }
         }
