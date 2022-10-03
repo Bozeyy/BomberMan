@@ -100,12 +100,6 @@ world.height = world.clientHeight;
 
 let frames = 0;
 
-const keys = {
-    arrowUp: { pressed: false },
-    arrowDown: { pressed: false },
-    arrowLeft: { pressed: false },
-    arrowRight: { pressed: false },
-}
 
 class Player {
     constructor(x, y) {
@@ -113,7 +107,7 @@ class Player {
         this.y= y,
         this.points = 0,
         this.pv = 3,
-        this.direction = "right"           
+        this.direction = "droite"           
     }
 }
 
@@ -225,25 +219,26 @@ const animationLoop= () => {
                     bombList.splice(i, 1);
                 }
             } else if (bombList[i].envoyer == true) {
-                switch (bombList[i].direction) {
-                    case "haut":
-                        console.log("________________________")
-                        moveBomb(bombList[i]);
-                        break;
-                    case "bas":
-                        moveBomb(bombList[i]);
-                        break;
-                    case "gauche":
-                        moveBomb(bombList[i]);
-                        break;
-                    case "droite":
-                        moveBomb(bombList[i]);
-                        break;
+                if (bombList[i].time%10 == 0) {
+                    
+                    switch (bombList[i].direction) {
+                        case "haut":
+                            moveBomb(bombList[i]);
+                            break;
+                        case "bas":
+                            moveBomb(bombList[i]);
+                            break;
+                        case "gauche":
+                            moveBomb(bombList[i]);
+                            break;
+                        case "droite":
+                            moveBomb(bombList[i]);
+                            break;
+                    }
                 }
-                console.log(bombList[i]);
-                if (bombList[i].time == 5) {
+                if (bombList[i].time == 200) {
                     exploserBomb(bombList[i]);
-                } else if (bombList[i].time == 10) {
+                } else if (bombList[i].time == 209) {
                     // si la bombe a un time de 2000 elle disparait
                     bombList.splice(i, 1);
                 }
@@ -270,25 +265,20 @@ animationLoop();
 
 addEventListener('keydown', ({key}) => {
 
-    console.log(key);
     switch (key) {
         case 'z':
-            keys.arrowUp.pressed = true;
             player1.direction = "haut";
             movePlayer("up", player1);
             break;
         case 's':
-            keys.arrowDown.pressed = true;
             player1.direction = "bas";
             movePlayer("down", player1);
             break;
         case 'q':
-            keys.arrowLeft.pressed = true;
             player1.direction = "gauche";
             movePlayer("left", player1);
             break;
         case 'd':
-            keys.arrowRight.pressed = true;
             player1.direction = "droite";
             movePlayer("right", player1);
             break;
@@ -300,24 +290,28 @@ addEventListener('keydown', ({key}) => {
             const bomb1 = new Bomb(player1.x, player1.y, player1, true);
             bombList.push(bomb1);
         case 'ArrowUp':
-            keys.arrowUp.pressed = true;
+            player2.direction = "haut";
             movePlayer("up", player2);
             break;
         case 'ArrowDown':
-            keys.arrowDown.pressed = true;
+            player2.direction = "bas";
             movePlayer("down", player2);
             break;
         case 'ArrowLeft':
-            keys.arrowLeft.pressed = true;
+            player2.direction = "gauche";
             movePlayer("left", player2);
             break;
         case 'ArrowRight':
-            keys.arrowRight.pressed = true;
+            player2.direction = "droite";
             movePlayer("right", player2);
             break;
         case 'Enter':
             const bomb2 = new Bomb(player2.x, player2.y, player2, false);
             bombList.push(bomb2);
+            break;
+        case 'Control':
+            const bomb3 = new Bomb(player2.x, player2.y, player2, true);
+            bombList.push(bomb3);
             break;
     }
 });
@@ -413,7 +407,7 @@ function moveBomb(bomb) {
             break;
     }
 
-    if ((tab[newX][newY] == "x")&&(bomb.time%100 == 0)) {
+    if (!(tab[newX][newY] == "x")) {
         // si la case suivante est un x on deplace la bombe
         bomb.x = newX;
         bomb.y = newY;
