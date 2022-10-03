@@ -70,12 +70,19 @@ function movePlayer(direction, player) {
             newY++;
             break;
     }
-        if ((tab[newX][newY] != "M") && (tab[newX][newY] != "B")) {
-            // mettre un x sur l'ancienne position du joueur
-            tab[player.x][player.y] = "x";
-            player.x = newX;
-            player.y = newY;
+
+    var isOnBomb = false;
+    for (var i = 0; i < bombList.length; i++) {
+        if ((bombList[i].x == newX) && (bombList[i].y == newY)) {
+             isOnBomb = true;
         }
+    }
+    if ((tab[newX][newY] != "M") && (tab[newX][newY] != "B") && (!isOnBomb)) {
+        // mettre un x sur l'ancienne position du joueur
+        tab[player.x][player.y] = "x";
+        player.x = newX;
+        player.y = newY;
+    }
 }
 
 // fonction qui permet d'afficher le tableau en console.log
@@ -111,12 +118,14 @@ class Player {
 }
 
 class Bomb {
-    constructor(x, y, player) {
+    constructor(x, y, player,envoyer) {
         this.x = x;
         this.y = y;
         this.owner = player;
         this.time = 0;
         this.explosion = false;
+        this.envoyer = envoyer;
+        this.direction = player.direction;
     }
 }
 
@@ -178,9 +187,6 @@ function afficherTabGraphique(tab) {
 
     // pour chaque bombe dans la liste de bombes
     for (var i = 0; i < bombList.length; i++) {
-        // afficher la bombe
-        //c.fillStyle = 'orange';
-        //c.fillRect(bombList[i].y*50+12, bombList[i].x*50+12, 25, 25);
         if (bombList[i].explosion == false) {
             var img = new Image();
             img.src = "img/PinkBomb.png";
@@ -211,11 +217,36 @@ const animationLoop= () => {
         for (var i = 0; i < bombList.length; i++) {
             bombList[i].time++;
             // si la bomb a un time de 1000 elle explose
-            if (bombList[i].time == 100) {
-                exploserBomb(bombList[i]);
-            } else if (bombList[i].time == 109) {
-                // si la bombe a un time de 2000 elle disparait
-                bombList.splice(i, 1);
+            if (bombList[i].envoyer == false ) {
+                if (bombList[i].time == 100) {
+                    exploserBomb(bombList[i]);
+                } else if (bombList[i].time == 109) {
+                    // si la bombe a un time de 2000 elle disparait
+                    bombList.splice(i, 1);
+                }
+            } else if (bombList[i].envoyer == true) {
+                switch (bombList[i].direction) {
+                    case "haut":
+                        console.log("________________________")
+                        moveBomb(bombList[i]);
+                        break;
+                    case "bas":
+                        moveBomb(bombList[i]);
+                        break;
+                    case "gauche":
+                        moveBomb(bombList[i]);
+                        break;
+                    case "droite":
+                        moveBomb(bombList[i]);
+                        break;
+                }
+                console.log(bombList[i]);
+                if (bombList[i].time == 5) {
+                    exploserBomb(bombList[i]);
+                } else if (bombList[i].time == 10) {
+                    // si la bombe a un time de 2000 elle disparait
+                    bombList.splice(i, 1);
+                }
             }
         }
     } else {
@@ -243,24 +274,31 @@ addEventListener('keydown', ({key}) => {
     switch (key) {
         case 'z':
             keys.arrowUp.pressed = true;
+            player1.direction = "haut";
             movePlayer("up", player1);
             break;
         case 's':
             keys.arrowDown.pressed = true;
+            player1.direction = "bas";
             movePlayer("down", player1);
             break;
         case 'q':
             keys.arrowLeft.pressed = true;
+            player1.direction = "gauche";
             movePlayer("left", player1);
             break;
         case 'd':
             keys.arrowRight.pressed = true;
+            player1.direction = "droite";
             movePlayer("right", player1);
             break;
         case 'e':
-            const bomb = new Bomb(player1.x, player1.y, player1);
+            const bomb = new Bomb(player1.x, player1.y, player1, false);
             bombList.push(bomb);
             break;
+        case 'a':
+            const bomb1 = new Bomb(player1.x, player1.y, player1, true);
+            bombList.push(bomb1);
         case 'ArrowUp':
             keys.arrowUp.pressed = true;
             movePlayer("up", player2);
@@ -278,7 +316,7 @@ addEventListener('keydown', ({key}) => {
             movePlayer("right", player2);
             break;
         case 'Enter':
-            const bomb2 = new Bomb(player2.x, player2.y, player2);
+            const bomb2 = new Bomb(player2.x, player2.y, player2, false);
             bombList.push(bomb2);
             break;
     }
@@ -351,3 +389,34 @@ function afficherTab(tab) {
     }
     console.log(res);
 }
+
+// fonction deplacer bomb 
+function moveBomb(bomb) {
+    var newY = 0;
+    var newX = 0;
+    switch (bomb.direction) {
+        case "haut":
+            newX = bomb.x --;
+            newY = bomb.y;
+            break;
+        case "bas":
+            newX = bomb.x++;
+            newY = bomb.y;
+            break;
+        case "gauche":
+            newX = bomb.x;
+            newY = bomb.y --;
+            break;
+        case "droite":
+            newX = bomb.x;
+            newY = bomb.y ++;
+            break;
+    }
+
+    if ((tab[newX][newY] == "x")&&(bomb.time%100 == 0)) {
+        // si la case suivante est un x on deplace la bombe
+        bomb.x = newX;
+        bomb.y = newY;
+    }
+}
+
