@@ -1,6 +1,6 @@
 const world = document.querySelector('#game');
 const c = world.getContext('2d');
-const tailleCase = 50;
+const tailleCase = world.width/13;
 // faire une liste de Bomb
 var bombList = [];
 // faire une liste de joueur
@@ -89,6 +89,8 @@ function afficherTab(tab) {
 
 world.width = world.clientWidth;
 world.height = world.clientHeight;
+
+//tailleCase = world.width / 13;
 
 let frames = 0;
 
