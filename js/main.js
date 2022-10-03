@@ -1,6 +1,6 @@
 const world = document.querySelector('#game');
 const c = world.getContext('2d');
-const tailleCase = 75;
+const tailleCase = 50;
 // faire une liste de Bomb
 var bombList = [];
 // faire une liste de joueur
@@ -8,23 +8,16 @@ var playerList = [];
 var continuer = true;
 
 // faire un tableau a deux dimensions
-var tab = new Array(13);
+var tab = new Array(11);
 for (var i = 0; i < tab.length; i++) {
-    tab[i] = new Array(13);
+    tab[i] = new Array(15);
 }
 
 //remplir le tableau avec des x
-for (var i = 0; i < tab.length; i++) {
+for (var i = 1; i < tab.length-1; i++) {
     for (var j = 0; j < tab[i].length; j++) {
         tab[i][j] = "x";
     }
-}
-// mettre des M sur les bords
-for (var i = 0; i < tab.length; i++) {
-    tab[0][i] = "M";
-    tab[12][i] = "M";
-    tab[i][0] = "M";
-    tab[i][12] = "M";
 }
 // mettre de M toutes les 2 lignes et colonnes
 for (var i = 0; i < tab.length; i+=2) {
@@ -38,12 +31,25 @@ for (var i = 1; i < tab.length-1; i++) {
     for (var j = 2; j < tab[i].length-2; j++) {
         if (tab[i][j] != "M") {
             var rand = Math.floor(Math.random() * 5);
-            if (rand < 3) {
+            if (rand < 4) {
                 tab[i][j] = "B";
             }
         }
     }
 }
+
+// mettre des "M" sur les 4 bords du tableau
+for (var i = 0; i < tab.length; i++) {
+    tab[i][0] = "M";
+    tab[i][tab[i].length-1] = "M";
+}
+for (var i = 0; i < tab[0].length; i++) {
+    tab[0][i] = "M";
+    tab[tab.length-1][i] = "M";
+}
+
+
+afficherTab(tab);
 
 // fonction qui perlet de déplacer le joueur
 function movePlayer(direction, player) {
@@ -108,6 +114,7 @@ class Bomb {
         this.y = y;
         this.owner = player;
         this.time = 0;
+        this.explosion = false;
     }
 }
 
@@ -121,25 +128,57 @@ function afficherTabGraphique(tab) {
     for (var i = 0; i < tab.length; i++) {
         for (var j = 0; j < tab[i].length; j++) {
             if (tab[i][j] == "M") {
-                c.fillStyle = 'black';
-                c.fillRect(j*50, i*50, 50, 50);
+                //c.fillStyle = 'black';
+                //c.fillRect(j*50, i*50, 50, 50);
+                // mettre une image de brique de 50 par 50
+                var img = new Image();
+                img.src = "img/Brique.jpeg";
+                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "x") {
-                c.fillStyle = 'white';
-                c.fillRect(j*50, i*50, 50, 50);
-            } else if (tab[i][j] == "J") {
-                c.fillStyle = 'red';
-                c.fillRect(j*50, i*50, 50, 50);
+                //c.fillStyle = 'white';
+                //c.fillRect(j*50, i*50, 50, 50);
+                var img = new Image();
+                img.src = "img/Terre.jpeg";
+                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "B") {
-                c.fillStyle = 'blue';
-                c.fillRect(j*50, i*50, 50, 50);
+                //c.fillStyle = 'blue';
+                //c.fillRect(j*50, i*50, 50, 50);
+                var img = new Image();
+                img.src = "img/Cobble.png";
+                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
+            } else if (tab[i][j] == "J") {
+                //c.fillStyle = 'red';
+                //c.fillRect(j*50, i*50, 50, 50);
+                var img = new Image();
+                img.src = "img/Terre.jpeg";
+                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             }
         }
     }
+
+    // pour chaque joueur on l'affiche dans le tableau
+    for (var i = 0; i < playerList.length; i++) {
+        var img = new Image();
+        img.src = "img/P1B.png";
+        c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+    }
+
+
     // pour chaque bombe dans la liste de bombes
     for (var i = 0; i < bombList.length; i++) {
         // afficher la bombe
-        c.fillStyle = 'orange';
-        c.fillRect(bombList[i].y*50+12, bombList[i].x*50+12, 25, 25);
+        //c.fillStyle = 'orange';
+        //c.fillRect(bombList[i].y*50+12, bombList[i].x*50+12, 25, 25);
+        if (bombList[i].explosion == false) {
+            var img = new Image();
+            img.src = "img/PinkBomb.png";
+            c.drawImage(img, bombList[i].y*tailleCase+12, bombList[i].x*tailleCase+12, 25, 25);
+        } 
+        if (bombList[i].explosion == true){
+            var img = new Image();
+            img.src = "img/Explosion.png";
+            c.drawImage(img, bombList[i].y*tailleCase-50, bombList[i].x*tailleCase-50, 150, 150);
+        }
     }
     
 }
@@ -160,6 +199,9 @@ const animationLoop= () => {
             // si la bomb a un time de 1000 elle explose
             if (bombList[i].time == 100) {
                 exploserBomb(bombList[i]);
+            } else if (bombList[i].time == 109) {
+                // si la bombe a un time de 2000 elle disparait
+                bombList.splice(i, 1);
             }
         }
     } else {
@@ -252,11 +294,13 @@ function exploserBomb(bomb) {
     }
 
     // animation de l'explosion
-    c.fillStyle = 'orange';
-    c.fillRect(bomb.y*50, bomb.x*50, 150, 150);
+    //c.fillStyle = 'orange';
+    //c.fillRect(bomb.y*50, bomb.x*50, 150, 150);
+    var img = new Image();
+    img.src = "img/Explosion.png";
+    c.drawImage(img, bomb.y*tailleCase, bomb.x*tailleCase, 150, 150);
+    bomb.explosion = true;
 
-    // on enlève la bombe de la liste de bombes
-    bombList.splice(bombList.indexOf(bomb), 1);
 
 }
 
@@ -264,7 +308,6 @@ function exploserBomb(bomb) {
 // fonction pour afficher le tableau en console.log
 function afficherTab(tab) {
     // mettre le joueur dans le tableau
-    tab[player1.x][player1.y] = "J";
     res = "";
     for (var i = 0; i < tab.length; i++) {
         for (var j = 0; j < tab[i].length; j++) {
