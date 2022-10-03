@@ -164,6 +164,16 @@ function afficherTabGraphique(tab) {
         c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
     }
 
+    // afficher les pv des deux joeurs
+    imgVie = new Image();
+    imgVie.src = "img/Heart.png";
+    for (var i = 0; i < playerList[0].pv; i++) {
+        c.drawImage(imgVie, 10+50*i, world.height-75, 50, 50);
+    }
+    for (var i = 0; i < playerList[1].pv; i++) {
+        c.drawImage(imgVie, world.width-60-50*i, world.height-75, 50, 50);
+    }
+
 
     // pour chaque bombe dans la liste de bombes
     for (var i = 0; i < bombList.length; i++) {

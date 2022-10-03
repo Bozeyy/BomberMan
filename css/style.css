@@ -3,7 +3,7 @@ body {
     padding: 0;
     height: 100%;
     width: 100%;
-    background-color: yellow;
+    background-color: #333;
 }
 
 html {
@@ -12,7 +12,7 @@ html {
 }
 
 #game {
-    background-color: blue;
+    background-color: rgb(67, 25, 25);
     height: 100%;
 }
 
