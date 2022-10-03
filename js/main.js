@@ -149,7 +149,7 @@ function afficherTabGraphique(tab) {
                 //c.fillStyle = 'blue';
                 //c.fillRect(j*50, i*50, 50, 50);
                 var img = new Image();
-                img.src = "img/Cobble.png";
+                img.src = "img/Crate1.png";
                 c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "J") {
                 //c.fillStyle = 'red';
