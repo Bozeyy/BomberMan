@@ -90,7 +90,6 @@ function afficherTab(tab) {
 world.width = world.clientWidth;
 world.height = world.clientHeight;
 
-//tailleCase = world.width / 13;
 
 let frames = 0;
 
@@ -170,10 +169,10 @@ function afficherTabGraphique(tab) {
     imgVie = new Image();
     imgVie.src = "img/Heart.png";
     for (var i = 0; i < playerList[0].pv; i++) {
-        c.drawImage(imgVie, 10+50*i, world.height-75, 50, 50);
+        c.drawImage(imgVie, 10+55*i, world.height-75, 50, 50);
     }
     for (var i = 0; i < playerList[1].pv; i++) {
-        c.drawImage(imgVie, world.width-60-50*i, world.height-75, 50, 50);
+        c.drawImage(imgVie, world.width-60-55*i, world.height-75, 50, 50);
     }
 
 
@@ -185,12 +184,12 @@ function afficherTabGraphique(tab) {
         if (bombList[i].explosion == false) {
             var img = new Image();
             img.src = "img/PinkBomb.png";
-            c.drawImage(img, bombList[i].y*tailleCase+12, bombList[i].x*tailleCase+12, 25, 25);
+            c.drawImage(img, bombList[i].y*tailleCase+12, bombList[i].x*tailleCase+12, tailleCase/2, tailleCase/2);
         } 
         if (bombList[i].explosion == true){
             var img = new Image();
             img.src = "img/Explosion.png";
-            c.drawImage(img, bombList[i].y*tailleCase-50, bombList[i].x*tailleCase-50, 150, 150);
+            c.drawImage(img, bombList[i].y*tailleCase-50, bombList[i].x*tailleCase-50, tailleCase*3, tailleCase*3);
         }
     }
     
