@@ -100,11 +100,12 @@ const keys = {
 }
 
 class Player {
-    constructor() {
-        this.x= 1,
-        this.y= 1,
+    constructor(x, y) {
+        this.x= x,
+        this.y= y,
         this.points = 0,
-        this.pv = 3         
+        this.pv = 3,
+        this.direction = "right"           
     }
 }
 
@@ -183,10 +184,12 @@ function afficherTabGraphique(tab) {
     
 }
 
-const player1 = new Player();
+const player1 = new Player(1, 1);
+const player2 = new Player(9, 13);
 
 // ajouter le joueur a la liste de joueur
 playerList.push(player1);
+playerList.push(player2);
 
 const animationLoop= () => {
     requestAnimationFrame(animationLoop);
@@ -214,7 +217,7 @@ const animationLoop= () => {
             if (playerList[i].pv > 0) {
                 c.fillText("Player " + (i+1) + " win", 200, 300);
             } else if (playerList[i].pv == 0) {
-                c.fillText("Player " + (i+1) + " loose", 200, 300);
+                c.fillText("Player " + (i+1) + " loose", 200, 400);
             }
         }
     }
@@ -246,6 +249,26 @@ addEventListener('keydown', ({key}) => {
         case 'e':
             const bomb = new Bomb(player1.x, player1.y, player1);
             bombList.push(bomb);
+            break;
+        case 'ArrowUp':
+            keys.arrowUp.pressed = true;
+            movePlayer("up", player2);
+            break;
+        case 'ArrowDown':
+            keys.arrowDown.pressed = true;
+            movePlayer("down", player2);
+            break;
+        case 'ArrowLeft':
+            keys.arrowLeft.pressed = true;
+            movePlayer("left", player2);
+            break;
+        case 'ArrowRight':
+            keys.arrowRight.pressed = true;
+            movePlayer("right", player2);
+            break;
+        case 'Enter':
+            const bomb2 = new Bomb(player2.x, player2.y, player2);
+            bombList.push(bomb2);
             break;
     }
 });
