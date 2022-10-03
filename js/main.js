@@ -1,6 +1,6 @@
 const world = document.querySelector('#game');
 const c = world.getContext('2d');
-const tailleCase = world.width/13;
+const tailleCase = world.width/15;
 // faire une liste de Bomb
 var bombList = [];
 // faire une liste de joueur
