@@ -3,6 +3,9 @@ const c = world.getContext('2d');
 const tailleCase = 75;
 // faire une liste de Bomb
 var bombList = [];
+// faire une liste de joueur
+var playerList = [];
+var continuer = true;
 
 // faire un tableau a deux dimensions
 var tab = new Array(13);
@@ -104,11 +107,17 @@ class Bomb {
         this.x = x;
         this.y = y;
         this.owner = player;
+        this.time = 0;
     }
 }
 
 // fonction qui permet de faire un affichage graphique du tableau
 function afficherTabGraphique(tab) {
+    // mettre le joueur dans le tableau
+    for (var i = 0; i < playerList.length; i++) {
+        tab[playerList[i].x][playerList[i].y] = "J";
+    }
+
     for (var i = 0; i < tab.length; i++) {
         for (var j = 0; j < tab[i].length; j++) {
             if (tab[i][j] == "M") {
@@ -137,11 +146,36 @@ function afficherTabGraphique(tab) {
 
 const player1 = new Player();
 
+// ajouter le joueur a la liste de joueur
+playerList.push(player1);
+
 const animationLoop= () => {
     requestAnimationFrame(animationLoop);
     c.clearRect(0, 0, world.width, world.height);
-    afficherTabGraphique(tab);
-    afficherTab(tab);
+    if (continuer) {
+        afficherTabGraphique(tab);
+        // essayer d'ajouter 1 a chaque time de chaque bombe
+        for (var i = 0; i < bombList.length; i++) {
+            bombList[i].time++;
+            // si la bomb a un time de 1000 elle explose
+            if (bombList[i].time == 100) {
+                exploserBomb(bombList[i]);
+            }
+        }
+    } else {
+        c.fillStyle = 'black';
+        c.fillRect(0, 0, world.width, world.height);
+        c.fillStyle = 'white';
+        c.font = "30px Arial";
+        c.fillText("Game Over", 200, 200);
+        for (var i = 0; i < playerList.length; i++) {
+            if (playerList[i].pv > 0) {
+                c.fillText("Player " + (i+1) + " win", 200, 300);
+            } else if (playerList[i].pv == 0) {
+                c.fillText("Player " + (i+1) + " loose", 200, 300);
+            }
+        }
+    }
     frames ++;
 }
 
@@ -190,6 +224,42 @@ addEventListener('keyup', ({key}) => {
             break;
     }
 });
+
+
+// faire une fonction exploserBomb qui prend en paramètre une bombe
+function exploserBomb(bomb) {
+    // la bomb détruit les cases "B" autour d'elle
+    // si la case est un "B" alors on la remplace par un "x"
+    for (var i = -1; i < 2; i++) {
+        for (var j = -1; j < 2; j++) {
+            if (tab[bomb.x+i][bomb.y+j] == "B") {
+                tab[bomb.x+i][bomb.y+j] = "x";
+            } else if (tab[bomb.x+i][bomb.y+j] == "J") {
+                // si la case est un "J" alors on retire 1 pv au joueur
+                // parcourir la liste pour savoir quelle joueur est sur cette case
+                for (var k = 0; k < playerList.length; k++) {
+                    if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y+j)) {
+                        playerList[k].pv--;
+                        console.log("pv du joueur " + k + " : " + playerList[k].pv);
+                        if (playerList[k].pv == 0) {
+                            console.log("le joueur " + k + " est mort");
+                            continuer = false;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // animation de l'explosion
+    c.fillStyle = 'orange';
+    c.fillRect(bomb.y*50, bomb.x*50, 150, 150);
+
+    // on enlève la bombe de la liste de bombes
+    bombList.splice(bombList.indexOf(bomb), 1);
+
+}
+
 
 // fonction pour afficher le tableau en console.log
 function afficherTab(tab) {
