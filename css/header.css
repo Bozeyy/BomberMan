@@ -1,0 +1,12 @@
+header {
+    background-color: red;
+    padding: 4px;
+}
+
+.header-left {
+    margin-left: 2em;
+}
+
+.header-logo {
+    width: 4em;
+}
