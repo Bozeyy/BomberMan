@@ -74,7 +74,9 @@ function movePlayer(direction, player) {
     var isOnBomb = false;
     for (var i = 0; i < bombList.length; i++) {
         if ((bombList[i].x == newX) && (bombList[i].y == newY)) {
-             isOnBomb = true;
+             if (bombList[i].owner != player ) {
+                isOnBomb = true;
+             }
         }
     }
     if ((tab[newX][newY] != "M") && (tab[newX][newY] != "B") && (!isOnBomb)) {
@@ -233,7 +235,7 @@ playerList.push(player1);
 playerList.push(player2);
 
 const animationLoop= () => {
-    requestAnimationFrame(animationLoop);
+    setTimeout(requestAnimationFrame(animationLoop), 1000);
     c.clearRect(0, 0, world.width, world.height);
     if (continuer) {
         afficherTabGraphique(tab);
@@ -288,6 +290,9 @@ const animationLoop= () => {
             }
         }
     }
+    
+    // attendre 100ms avant de relancer la fonction
+
     frames ++;
 }
 
@@ -420,8 +425,7 @@ function exploserBomb(bomb) {
     } else if (bomb.maxiBomb) {
         console.log("maxi bomb");
         for (var i = -4; i < 5; i++) {
-            console.log(bomb.x+i + " " + bomb.y);
-            if (bomb.x+i >= 0 && bomb.x+i< 15) {
+            if (bomb.x+i > 0 && bomb.x+i < 15) {
                 if (tab[bomb.x+i][bomb.y] == "B") {
                     tab[bomb.x+i][bomb.y] = "x";
                 } else if (tab[bomb.x+i][bomb.y] == "J") {
@@ -440,7 +444,7 @@ function exploserBomb(bomb) {
         }
         for (var j = -4; j < 5; j++) {
             console.log(bomb.x + " " + bomb.y+j);
-            if (bomb.y+j>= 0 && bomb.y+j < 11) {
+            if (bomb.y+j > 0 && bomb.y+j < 11) {
                 if (tab[bomb.x][bomb.y+j] == "B") {
                     tab[bomb.x][bomb.y+j] = "x";
                 } else if (tab[bomb.x][bomb.y+j] == "J") {
