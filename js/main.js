@@ -438,20 +438,16 @@ function moveBomb(bomb) {
     }
 }
 
-// fonction qui permet de lancer le jeu
-function lancerJeu() {
+function launchGame()
+{
     var btn = document.querySelector(".btn");
-    //var game = document.querySelector(".game");
-    // afficher sur la page l'element avec l'id #game
-    //game.style.display = "flex";
-    // cacher l'element avec l'id #btn
     btn.style.display = "none";
-    // on affiche le tableau
-    afficherTab(tab);
-    // on lance la boucle d'animation
+    var canvas = document.querySelector(".gameP");
+    console.log("ici");
+    canvas.style.display = "block";
+
     animationLoop();
 }
 
-animationLoop();
 
 

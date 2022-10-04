@@ -28,8 +28,9 @@ body {
     top: 0;
 }
 
-#game {
-    background-color: rgb(67, 25, 25);
+.game{
+    display: none;
+    z-index: 1;
 }
 
 .game {
@@ -39,3 +40,62 @@ body {
     justify-content: center;
     align-items: center;
 }
+
+.btn {
+    z-index: 5;
+    position: absolute;
+    background-color: rgb(67, 25, 25);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.main {
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10%;
+}
+
+
+.left-part {
+    height: 100%;
+    width: 20%;
+}
+
+.key {
+    display: flex;
+    color: #fff;
+    font-family: sans-serif;
+    align-items: center;
+    font-size: 1em;
+}
+
+.key h1 {
+    border: solid 1px #fff;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+.right-part {
+    height: 100%;
+    width: 20%;
+    padding-left: 3em;
+}
+
