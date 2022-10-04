@@ -41,6 +41,13 @@ imgHeart.src = "img/Heart.png";
 var imgBomb = new Image();
 imgBomb.src = "img/PinkBomb.png";
 
+
+
+
+
+
+
+
 // faire un tableau a deux dimensions
 var tab = new Array(11);
 for (var i = 0; i < tab.length; i++) {
@@ -303,6 +310,7 @@ addEventListener('keydown', ({key}) => {
 
     switch (key) {
         case 'z':
+            console.log("z");
             player1.direction = "haut";
             player1.devant = false;
             movePlayer("up", player1);
@@ -371,22 +379,6 @@ addEventListener('keydown', ({key}) => {
     }
 });
 
-addEventListener('keyup', ({key}) => {
-    switch (key) {
-        case 'z':
-            keys.arrowUp.pressed = false;
-            break;
-        case 's':
-            keys.arrowDown.pressed = false;
-            break;
-        case 'q':
-            keys.arrowLeft.pressed = false;
-            break;
-        case 'd':
-            keys.arrowRight.pressed = false;
-            break;
-    }
-});
 
 
 // faire une fonction exploserBomb qui prend en paramètre une bombe
@@ -470,10 +462,12 @@ function moveBomb(bomb) {
             break;
     }
 
-    if (!(tab[newX][newY] == "x")) {
-        // si la case suivante est un x on deplace la bombe
-        bomb.x = newX;
-        bomb.y = newY;
+    if ( newX > 0 && newX < tab.length && newY > 0 && newY < tab[0].length) {
+        console.log(tab[newX][newY]);
+        if (tab[newX][newY] == "x" ) {
+            bomb.x = newX;
+            bomb.y = newY;
+        }  
     }
 }
 
