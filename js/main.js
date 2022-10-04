@@ -335,25 +335,25 @@ addEventListener('keydown', ({key}) => {
             const bomb1 = new Bomb(player1.x, player1.y, player1, true, false);
             bombList.push(bomb1);
             break;
-        case 'ArrowUp':
+        case 'o':
             player2.direction = "haut";
             player2.devant = false;
             movePlayer("up", player2);
             break;
-        case 'ArrowDown':
+        case 'l':
             player2.direction = "bas";
             player2.devant = true;
             movePlayer("down", player2);
             break;
-        case 'ArrowLeft':
+        case 'k':
             player2.direction = "gauche";
             movePlayer("left", player2);
             break;
-        case 'ArrowRight':
+        case 'm':
             player2.direction = "droite";
             movePlayer("right", player2);
             break;
-        case 'Enter':
+        case 'p':
             player2.nbBombLancer++;
             if ( player2.nbBombLancer%5 == 0) {
                 const bomb2 = new Bomb(player2.x, player2.y, player2, false, true);
@@ -363,7 +363,7 @@ addEventListener('keydown', ({key}) => {
                 bombList.push(bomb2);
             }
             break;
-        case 'Control':
+        case 'i':
             const bomb3 = new Bomb(player2.x, player2.y, player2, true);
             bombList.push(bomb3);
             break;
@@ -423,12 +423,17 @@ function exploserBomb(bomb) {
         c.drawImage(img, bomb.y*tailleCase, bomb.x*tailleCase, 150, 150);
         bomb.explosion = true;
     } else if (bomb.maxiBomb) {
-        console.log("maxi bomb");
-        for (var i = -4; i < 5; i++) {
-            if (bomb.x+i > 0 && bomb.x+i < 15) {
+        var possible = true;
+        var i = 0;
+        while (possilbe && i < 4) {
+            if ( bomb.x+i > 14) {
+                possible = false;
+            } else {
                 if (tab[bomb.x+i][bomb.y] == "B") {
                     tab[bomb.x+i][bomb.y] = "x";
                 } else if (tab[bomb.x+i][bomb.y] == "J") {
+                    // si la case est un "J" alors on retire 1 pv au joueur
+                    // parcourir la liste pour savoir quelle joueur est sur cette case
                     for (var k = 0; k < playerList.length; k++) {
                         if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
                             playerList[k].pv--;
@@ -439,17 +444,27 @@ function exploserBomb(bomb) {
                             }
                         }
                     }
+                } else {
+                    possible = false;
                 }
+                i++;
             }
         }
-        for (var j = -4; j < 5; j++) {
-            console.log(bomb.x + " " + bomb.y+j);
-            if (bomb.y+j > 0 && bomb.y+j < 11) {
-                if (tab[bomb.x][bomb.y+j] == "B") {
-                    tab[bomb.x][bomb.y+j] = "x";
-                } else if (tab[bomb.x][bomb.y+j] == "J") {
+
+        possible = true;
+        i = 0;
+
+        while (possilbe && i < 4) {
+            if (bomb.x-i >= 0) {
+                possible = false;
+            } else {
+                if (tab[bomb.x-i][bomb.y] == "B") {
+                    tab[bomb.x-i][bomb.y] = "x";
+                } else if (tab[bomb.x+i][bomb.y] == "J") {
+                    // si la case est un "J" alors on retire 1 pv au joueur
+                    // parcourir la liste pour savoir quelle joueur est sur cette case
                     for (var k = 0; k < playerList.length; k++) {
-                        if ((playerList[k].x == bomb.x) && (playerList[k].y == bomb.y+j)) {
+                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
                             playerList[k].pv--;
                             console.log("pv du joueur " + k + " : " + playerList[k].pv);
                             if (playerList[k].pv == 0) {
@@ -458,9 +473,71 @@ function exploserBomb(bomb) {
                             }
                         }
                     }
+                } else {
+                    possible = false;
                 }
+                i++;
             }
         }
+
+        possible = true;
+        i = 0;
+
+        while (possilbe && i < 4) {
+            if (bomb.y+i > 10) {
+                possible = false;
+            } else {
+                if (tab[bomb.x][bomb.y+i] == "B") {
+                    tab[bomb.x][bomb.y+i] = "x";
+                } else if (tab[bomb.x+i][bomb.y] == "J") {
+                    // si la case est un "J" alors on retire 1 pv au joueur
+                    // parcourir la liste pour savoir quelle joueur est sur cette case
+                    for (var k = 0; k < playerList.length; k++) {
+                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
+                            playerList[k].pv--;
+                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
+                            if (playerList[k].pv == 0) {
+                                console.log("le joueur " + k + " est mort");
+                                continuer = false;
+                            }
+                        }
+                    }
+                } else {
+                    possible = false;
+                }
+                i++;
+            }
+        }
+
+        possible = true;
+        i = 0;
+
+        while (possilbe && i < 4) {
+            if (bomb.y-i>= 0) {
+                possible = false;
+            } else {
+                if (tab[bomb.x][bomb.y-i] == "B") {
+                    tab[bomb.x][bomb.y-i] = "x";
+                } else if (tab[bomb.x+i][bomb.y] == "J") {
+                    // si la case est un "J" alors on retire 1 pv au joueur
+                    // parcourir la liste pour savoir quelle joueur est sur cette case
+                    for (var k = 0; k < playerList.length; k++) {
+                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
+                            playerList[k].pv--;
+                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
+                            if (playerList[k].pv == 0) {
+                                console.log("le joueur " + k + " est mort");
+                                continuer = false;
+                            }
+                        }
+                    }
+                } else {
+                    possible = false;
+                }
+                i++;
+            }
+        }
+
     }
 
 
