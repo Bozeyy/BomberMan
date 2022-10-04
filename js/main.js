@@ -109,11 +109,12 @@ class Player {
         this.pv = 3,
         this.direction = "droite"    
         this.devant = true;       
+        this.nbBombLancer = 0;
     }
 }
 
 class Bomb {
-    constructor(x, y, player,envoyer) {
+    constructor(x, y, player,envoyer,maxi) {
         this.x = x;
         this.y = y;
         this.owner = player;
@@ -121,6 +122,7 @@ class Bomb {
         this.explosion = false;
         this.envoyer = envoyer;
         this.direction = player.direction;
+        this.maxiBomb = maxi;
     }
 }
 
@@ -191,12 +193,21 @@ function afficherTabGraphique(tab) {
     imgVie = new Image();
     imgVie.src = "img/Heart.png";
     for (var i = 0; i < playerList[0].pv; i++) {
-        c.drawImage(imgVie, 10+55*i, world.height-75, 50, 50);
+        c.drawImage(imgVie, 10+55*i, world.height-50, 50, 50);
     }
     for (var i = 0; i < playerList[1].pv; i++) {
-        c.drawImage(imgVie, world.width-60-55*i, world.height-75, 50, 50);
+        c.drawImage(imgVie, world.width-60-55*i, world.height-50, 50, 50);
     }
 
+    // afficher le nombre de bombe poser par le Joueur
+    imgBomb = new Image();
+    imgBomb.src = "img/PinkBomb.png";
+    for (var i = 0; i < 5 - playerList[0].nbBombLancer%5; i++) {
+        c.drawImage(imgBomb, 10+55*i, world.height-125, 50, 50);
+    }
+    for (var i = 0; i < 5 - playerList[1].nbBombLancer%5; i++) {
+        c.drawImage(imgBomb, world.width-60-55*i, world.height-125, 50, 50);
+    }
 
     // pour chaque bombe dans la liste de bombes
     for (var i = 0; i < bombList.length; i++) {
@@ -304,11 +315,19 @@ addEventListener('keydown', ({key}) => {
             movePlayer("right", player1);
             break;
         case 'e':
-            const bomb = new Bomb(player1.x, player1.y, player1, false);
-            bombList.push(bomb);
+            player1.nbBombLancer++;
+            if (player1.nbBombLancer%5 == 0) {
+                const bomb = new Bomb(player1.x, player1.y, player1, false, true);
+                bombList.push(bomb);
+                console.log(bomb);
+            } else {
+                const bomb = new Bomb(player1.x, player1.y, player1, false, false);
+                bombList.push(bomb);
+                console.log(bomb);
+            }
             break;
         case 'a':
-            const bomb1 = new Bomb(player1.x, player1.y, player1, true);
+            const bomb1 = new Bomb(player1.x, player1.y, player1, true, false);
             bombList.push(bomb1);
             break;
         case 'ArrowUp':
@@ -330,8 +349,14 @@ addEventListener('keydown', ({key}) => {
             movePlayer("right", player2);
             break;
         case 'Enter':
-            const bomb2 = new Bomb(player2.x, player2.y, player2, false);
-            bombList.push(bomb2);
+            player2.nbBombLancer++;
+            if ( player2.nbBombLancer%5 == 0) {
+                const bomb2 = new Bomb(player2.x, player2.y, player2, false, true);
+                bombList.push(bomb2);
+            } else {
+                const bomb2 = new Bomb(player2.x, player2.y, player2, false, false);
+                bombList.push(bomb2);
+            }
             break;
         case 'Control':
             const bomb3 = new Bomb(player2.x, player2.y, player2, true);
@@ -360,36 +385,79 @@ addEventListener('keyup', ({key}) => {
 
 // faire une fonction exploserBomb qui prend en paramètre une bombe
 function exploserBomb(bomb) {
-    // la bomb détruit les cases "B" autour d'elle
-    // si la case est un "B" alors on la remplace par un "x"
-    for (var i = -1; i < 2; i++) {
-        for (var j = -1; j < 2; j++) {
-            if (tab[bomb.x+i][bomb.y+j] == "B") {
-                tab[bomb.x+i][bomb.y+j] = "x";
-            } else if (tab[bomb.x+i][bomb.y+j] == "J") {
-                // si la case est un "J" alors on retire 1 pv au joueur
-                // parcourir la liste pour savoir quelle joueur est sur cette case
-                for (var k = 0; k < playerList.length; k++) {
-                    if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y+j)) {
-                        playerList[k].pv--;
-                        console.log("pv du joueur " + k + " : " + playerList[k].pv);
-                        if (playerList[k].pv == 0) {
-                            console.log("le joueur " + k + " est mort");
-                            continuer = false;
+    if (!bomb.maxiBomb)
+    {
+            // la bomb détruit les cases "B" autour d'elle
+        // si la case est un "B" alors on la remplace par un "x"
+        for (var i = -1; i < 2; i++) {
+            for (var j = -1; j < 2; j++) {
+                if (tab[bomb.x+i][bomb.y+j] == "B") {
+                    tab[bomb.x+i][bomb.y+j] = "x";
+                } else if (tab[bomb.x+i][bomb.y+j] == "J") {
+                    // si la case est un "J" alors on retire 1 pv au joueur
+                    // parcourir la liste pour savoir quelle joueur est sur cette case
+                    for (var k = 0; k < playerList.length; k++) {
+                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y+j)) {
+                            playerList[k].pv--;
+                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
+                            if (playerList[k].pv == 0) {
+                                console.log("le joueur " + k + " est mort");
+                                continuer = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // animation de l'explosion
+        //c.fillStyle = 'orange';
+        //c.fillRect(bomb.y*50, bomb.x*50, 150, 150);
+        var img = new Image();
+        img.src = "img/Explosion.png";
+        c.drawImage(img, bomb.y*tailleCase, bomb.x*tailleCase, 150, 150);
+        bomb.explosion = true;
+    } else if (bomb.maxiBomb) {
+        console.log("maxi bomb");
+        for (var i = -4; i < 5; i++) {
+            console.log(bomb.x+i + " " + bomb.y);
+            if (bomb.x+i >= 0 && bomb.x+i< 15) {
+                if (tab[bomb.x+i][bomb.y] == "B") {
+                    tab[bomb.x+i][bomb.y] = "x";
+                } else if (tab[bomb.x+i][bomb.y] == "J") {
+                    for (var k = 0; k < playerList.length; k++) {
+                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
+                            playerList[k].pv--;
+                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
+                            if (playerList[k].pv == 0) {
+                                console.log("le joueur " + k + " est mort");
+                                continuer = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (var j = -4; j < 5; j++) {
+            console.log(bomb.x + " " + bomb.y+j);
+            if (bomb.y+j>= 0 && bomb.y+j < 11) {
+                if (tab[bomb.x][bomb.y+j] == "B") {
+                    tab[bomb.x][bomb.y+j] = "x";
+                } else if (tab[bomb.x][bomb.y+j] == "J") {
+                    for (var k = 0; k < playerList.length; k++) {
+                        if ((playerList[k].x == bomb.x) && (playerList[k].y == bomb.y+j)) {
+                            playerList[k].pv--;
+                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
+                            if (playerList[k].pv == 0) {
+                                console.log("le joueur " + k + " est mort");
+                                continuer = false;
+                            }
                         }
                     }
                 }
             }
         }
     }
-
-    // animation de l'explosion
-    //c.fillStyle = 'orange';
-    //c.fillRect(bomb.y*50, bomb.x*50, 150, 150);
-    var img = new Image();
-    img.src = "img/Explosion.png";
-    c.drawImage(img, bomb.y*tailleCase, bomb.x*tailleCase, 150, 150);
-    bomb.explosion = true;
 
 
 }
