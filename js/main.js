@@ -280,7 +280,7 @@ const animationLoop= () => {
     frames ++;
 }
 
-animationLoop();
+//animationLoop();
 
 addEventListener('keydown', ({key}) => {
 
@@ -437,4 +437,21 @@ function moveBomb(bomb) {
         bomb.y = newY;
     }
 }
+
+// fonction qui permet de lancer le jeu
+function lancerJeu() {
+    var btn = document.querySelector(".btn");
+    //var game = document.querySelector(".game");
+    // afficher sur la page l'element avec l'id #game
+    //game.style.display = "flex";
+    // cacher l'element avec l'id #btn
+    btn.style.display = "none";
+    // on affiche le tableau
+    afficherTab(tab);
+    // on lance la boucle d'animation
+    animationLoop();
+}
+
+animationLoop();
+
 
