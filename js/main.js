@@ -41,13 +41,6 @@ imgHeart.src = "img/Heart.png";
 var imgBomb = new Image();
 imgBomb.src = "img/PinkBomb.png";
 
-
-
-
-
-
-
-
 // faire un tableau a deux dimensions
 var tab = new Array(11);
 for (var i = 0; i < tab.length; i++) {
@@ -484,16 +477,7 @@ function moveBomb(bomb) {
     }
 }
 
-function launchGame()
-{
-    var btn = document.querySelector(".btn");
-    btn.style.display = "none";
-    var canvas = document.querySelector(".gameP");
-    console.log("ici");
-    canvas.style.display = "block";
-
-    animationLoop();
-}
+animationLoop();
 
 // fonction explosionMaxiBomb
 function explosionCase(x, y) {
