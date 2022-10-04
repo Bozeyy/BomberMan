@@ -7,6 +7,25 @@ var bombList = [];
 var playerList = [];
 var continuer = true;
 
+
+// charger toute les images
+var imgWall = new Image();
+imgWall.src = "img/wall.jpg";
+
+var imgDirt = new Image();
+imgDirt.src = "img/Dirt1.jpg";
+
+var imgCrate = new Image();
+imgCrate.src = "img/Crate1.png";
+
+var imgExplosion = new Image();
+imgExplosion.src = "img/Explosion.png";
+
+
+
+
+
+
 // faire un tableau a deux dimensions
 var tab = new Array(11);
 for (var i = 0; i < tab.length; i++) {
