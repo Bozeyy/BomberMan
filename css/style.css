@@ -3,7 +3,7 @@ html {
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: red;
+    background-color: #333;
 }
 
 body {
@@ -69,6 +69,7 @@ body {
 .left-part {
     height: 100%;
     width: 20%;
+    margin-left: 3em;
 }
 
 .key {
