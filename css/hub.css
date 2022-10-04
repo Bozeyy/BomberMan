@@ -54,8 +54,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-self: center;
-    text-align: center;
+    margin-top: 1em;
+}
+
+.rules {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rules h1 {
+    font-family: sans-serif;
+    color: #f3f3f3;
 }
 
 .joueur-gauche {
