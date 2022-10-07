@@ -47,11 +47,6 @@ body {
 .header-content h1 {
     color: #f3f3f3;
     font-family: 'Silkscreen', cursive;
-=======
-.header-content h1 {
-    color: #f3f3f3;
-    font-family: sans-serif;
->>>>>>> 19348572b0f28c6aaf7c78ccf5f1bb0d64782bcb
     font-size: 300%;
 }
 
@@ -60,21 +55,14 @@ body {
     text-decoration: none;
     color: #f3f3f3;
     font-size: 2em;
-<<<<<<< HEAD
     font-family: 'Silkscreen', cursive;
     border: solid 2px #f3f3f3;
     padding: 5px 1em;
-=======
-    font-family: sans-serif;
-    border: solid 2px #f3f3f3;
-    padding: 5px 1em;
-    border-radius: 5px;
->>>>>>> 19348572b0f28c6aaf7c78ccf5f1bb0d64782bcb
+
     text-align: center;
 }
 
 .btn:hover {
-<<<<<<< HEAD
     font-size: 2.1em;
     border: solid 2px yellow;
     color: yellow;
@@ -83,14 +71,12 @@ body {
 
 .rule {
     font-family: 'Silkscreen', cursive;
-=======
     background-color: #f3f3f3;
     color: #000;
 }
 
 .rule {
     font-family: sans-serif;
->>>>>>> 19348572b0f28c6aaf7c78ccf5f1bb0d64782bcb
     color: #f3f3f3;
     display: flex;
     flex-direction: column;
@@ -106,41 +92,23 @@ body {
 }
 
 .rules h1 {
-<<<<<<< HEAD
     font-family: 'Silkscreen', cursive;
-=======
-    font-family: sans-serif;
->>>>>>> 19348572b0f28c6aaf7c78ccf5f1bb0d64782bcb
     color: #f3f3f3;
 }
 
 .joueur-gauche {
     color: #f3f3f3;
-<<<<<<< HEAD
     font-family: 'Silkscreen', cursive;
     margin-right: 1em;
     border: solid 1px #f3f3f3;
-=======
-    font-family: sans-serif;
-    margin-right: 1em;
-    border: solid 1px #f3f3f3;
-    border-radius: 5px;
->>>>>>> 19348572b0f28c6aaf7c78ccf5f1bb0d64782bcb
     padding: 1em;
 }
 
 .joueur-droit {
     color: #f3f3f3;
-<<<<<<< HEAD
     font-family: 'Silkscreen', cursive;
     margin-left: 1em;
     border: solid 1px #f3f3f3;
-=======
-    font-family: sans-serif;
-    margin-left: 1em;
-    border: solid 1px #f3f3f3;
-    border-radius: 5px;
->>>>>>> 19348572b0f28c6aaf7c78ccf5f1bb0d64782bcb
     padding: 1em;
 }
 
