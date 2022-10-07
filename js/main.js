@@ -21,6 +21,28 @@ imgCrate.src = "img/Crate1.png";
 var imgExplosion = new Image();
 imgExplosion.src = "img/Explosion.png";
 
+//image du personnage
+var imgP1AKR = new Image();
+imgP1AKR.src = "img/P1AKR.png";
+
+var imgP1AKL = new Image();
+imgP1AKL.src = "img/P1AKL.png";
+
+var imgP1AKDD = new Image();
+imgP1AKDD.src = "img/P1AKDD.png";
+
+var imgP1AKG = new Image();
+imgP1AKG.src = "img/P1AKGD.png";
+
+// image coeur
+var imgHeart = new Image();
+imgHeart.src = "img/Heart.png";
+
+var imgBomb = new Image();
+imgBomb.src = "img/PinkBomb.png";
+
+
+
 
 
 
@@ -157,30 +179,13 @@ function afficherTabGraphique(tab) {
     for (var i = 0; i < tab.length; i++) {
         for (var j = 0; j < tab[i].length; j++) {
             if (tab[i][j] == "M") {
-                //c.fillStyle = 'black';
-                //c.fillRect(j*50, i*50, 50, 50);
-                // mettre une image de brique de 50 par 50
-                var img = new Image();
-                img.src = "img/wall.jpg";
-                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgWall, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "x") {
-                //c.fillStyle = 'white';
-                //c.fillRect(j*50, i*50, 50, 50);
-                var img = new Image();
-                img.src = "img/Dirt1.jpg";
-                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgDirt, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "B") {
-                //c.fillStyle = 'blue';
-                //c.fillRect(j*50, i*50, 50, 50);
-                var img = new Image();
-                img.src = "img/Crate1.png";
-                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgCrate, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             } else if (tab[i][j] == "J") {
-                //c.fillStyle = 'red';
-                //c.fillRect(j*50, i*50, 50, 50);
-                var img = new Image();
-                img.src = "img/Dirt1.jpg";
-                c.drawImage(img, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgDirt, j*tailleCase, i*tailleCase, tailleCase, tailleCase);
             }
         }
     }
@@ -189,40 +194,28 @@ function afficherTabGraphique(tab) {
     for (var i = 0; i < playerList.length; i++) {
         if (playerList[i].devant) {
             if (playerList[i].direction == "droite") {
-                var img = new Image();
-                img.src = "img/P1AKR.png";
-                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgP1AKR, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
             } else  {
-                var img = new Image();
-                img.src = "img/P1AKL.png";
-                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgP1AKL, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
             } 
         } else {
             if (playerList[i].direction == "droite") {
-                var img = new Image();
-                img.src = "img/P1AKDD.png";
-                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgP1AKDD, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
             } else {
-                var img = new Image();
-                img.src = "img/P1AKGD.png";
-                c.drawImage(img, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
+                c.drawImage(imgP1AKG, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
             }
         }
     }
 
     // afficher les pv des deux joeurs
-    imgVie = new Image();
-    imgVie.src = "img/Heart.png";
     for (var i = 0; i < playerList[0].pv; i++) {
-        c.drawImage(imgVie, 10+55*i, world.height-50, 50, 50);
+        c.drawImage(imgHeart, 10+55*i, world.height-50, 50, 50);
     }
     for (var i = 0; i < playerList[1].pv; i++) {
-        c.drawImage(imgVie, world.width-60-55*i, world.height-50, 50, 50);
+        c.drawImage(imgHeart, world.width-60-55*i, world.height-50, 50, 50);
     }
 
     // afficher le nombre de bombe poser par le Joueur
-    imgBomb = new Image();
-    imgBomb.src = "img/PinkBomb.png";
     for (var i = 0; i < 5 - playerList[0].nbBombLancer%5; i++) {
         c.drawImage(imgBomb, 10+55*i, world.height-125, 50, 50);
     }
@@ -233,14 +226,10 @@ function afficherTabGraphique(tab) {
     // pour chaque bombe dans la liste de bombes
     for (var i = 0; i < bombList.length; i++) {
         if (bombList[i].explosion == false) {
-            var img = new Image();
-            img.src = "img/PinkBomb.png";
-            c.drawImage(img, bombList[i].y*tailleCase+12, bombList[i].x*tailleCase+12, tailleCase/2, tailleCase/2);
+            c.drawImage(imgBomb, bombList[i].y*tailleCase+12, bombList[i].x*tailleCase+12, tailleCase/2, tailleCase/2);
         } 
         if (bombList[i].explosion == true){
-            var img = new Image();
-            img.src = "img/Explosion.png";
-            c.drawImage(img, bombList[i].y*tailleCase-50, bombList[i].x*tailleCase-50, tailleCase*3, tailleCase*3);
+            c.drawImage(imgExplosion, bombList[i].y*tailleCase-50, bombList[i].x*tailleCase-50, tailleCase*3, tailleCase*3);
         }
     }
     
@@ -321,6 +310,7 @@ addEventListener('keydown', ({key}) => {
 
     switch (key) {
         case 'z':
+            console.log("z");
             player1.direction = "haut";
             player1.devant = false;
             movePlayer("up", player1);
@@ -389,22 +379,6 @@ addEventListener('keydown', ({key}) => {
     }
 });
 
-addEventListener('keyup', ({key}) => {
-    switch (key) {
-        case 'z':
-            keys.arrowUp.pressed = false;
-            break;
-        case 's':
-            keys.arrowDown.pressed = false;
-            break;
-        case 'q':
-            keys.arrowLeft.pressed = false;
-            break;
-        case 'd':
-            keys.arrowRight.pressed = false;
-            break;
-    }
-});
 
 
 // faire une fonction exploserBomb qui prend en paramètre une bombe
@@ -418,8 +392,6 @@ function exploserBomb(bomb) {
                 if (tab[bomb.x+i][bomb.y+j] == "B") {
                     tab[bomb.x+i][bomb.y+j] = "x";
                 } else if (tab[bomb.x+i][bomb.y+j] == "J") {
-                    // si la case est un "J" alors on retire 1 pv au joueur
-                    // parcourir la liste pour savoir quelle joueur est sur cette case
                     for (var k = 0; k < playerList.length; k++) {
                         if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y+j)) {
                             playerList[k].pv--;
@@ -442,121 +414,12 @@ function exploserBomb(bomb) {
         c.drawImage(img, bomb.y*tailleCase, bomb.x*tailleCase, 150, 150);
         bomb.explosion = true;
     } else if (bomb.maxiBomb) {
-        var possible = true;
-        var i = 0;
-        while (possilbe && i < 4) {
-            if ( bomb.x+i > 14) {
-                possible = false;
-            } else {
-                if (tab[bomb.x+i][bomb.y] == "B") {
-                    tab[bomb.x+i][bomb.y] = "x";
-                } else if (tab[bomb.x+i][bomb.y] == "J") {
-                    // si la case est un "J" alors on retire 1 pv au joueur
-                    // parcourir la liste pour savoir quelle joueur est sur cette case
-                    for (var k = 0; k < playerList.length; k++) {
-                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
-                            playerList[k].pv--;
-                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
-                            if (playerList[k].pv == 0) {
-                                console.log("le joueur " + k + " est mort");
-                                continuer = false;
-                            }
-                        }
-                    }
-                } else {
-                    possible = false;
-                }
-                i++;
-            }
+        for (var i = -3; i < 4; i++) {
+            explosionCase(bomb.x, bomb.y+i);
         }
-
-        possible = true;
-        i = 0;
-
-        while (possilbe && i < 4) {
-            if (bomb.x-i >= 0) {
-                possible = false;
-            } else {
-                if (tab[bomb.x-i][bomb.y] == "B") {
-                    tab[bomb.x-i][bomb.y] = "x";
-                } else if (tab[bomb.x+i][bomb.y] == "J") {
-                    // si la case est un "J" alors on retire 1 pv au joueur
-                    // parcourir la liste pour savoir quelle joueur est sur cette case
-                    for (var k = 0; k < playerList.length; k++) {
-                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
-                            playerList[k].pv--;
-                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
-                            if (playerList[k].pv == 0) {
-                                console.log("le joueur " + k + " est mort");
-                                continuer = false;
-                            }
-                        }
-                    }
-                } else {
-                    possible = false;
-                }
-                i++;
-            }
+        for (var i = -3; i < 4; i++) {
+            explosionCase(bomb.x+i, bomb.y);
         }
-
-        possible = true;
-        i = 0;
-
-        while (possilbe && i < 4) {
-            if (bomb.y+i > 10) {
-                possible = false;
-            } else {
-                if (tab[bomb.x][bomb.y+i] == "B") {
-                    tab[bomb.x][bomb.y+i] = "x";
-                } else if (tab[bomb.x+i][bomb.y] == "J") {
-                    // si la case est un "J" alors on retire 1 pv au joueur
-                    // parcourir la liste pour savoir quelle joueur est sur cette case
-                    for (var k = 0; k < playerList.length; k++) {
-                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
-                            playerList[k].pv--;
-                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
-                            if (playerList[k].pv == 0) {
-                                console.log("le joueur " + k + " est mort");
-                                continuer = false;
-                            }
-                        }
-                    }
-                } else {
-                    possible = false;
-                }
-                i++;
-            }
-        }
-
-        possible = true;
-        i = 0;
-
-        while (possilbe && i < 4) {
-            if (bomb.y-i>= 0) {
-                possible = false;
-            } else {
-                if (tab[bomb.x][bomb.y-i] == "B") {
-                    tab[bomb.x][bomb.y-i] = "x";
-                } else if (tab[bomb.x+i][bomb.y] == "J") {
-                    // si la case est un "J" alors on retire 1 pv au joueur
-                    // parcourir la liste pour savoir quelle joueur est sur cette case
-                    for (var k = 0; k < playerList.length; k++) {
-                        if ((playerList[k].x == bomb.x+i) && (playerList[k].y == bomb.y)) {
-                            playerList[k].pv--;
-                            console.log("pv du joueur " + k + " : " + playerList[k].pv);
-                            if (playerList[k].pv == 0) {
-                                console.log("le joueur " + k + " est mort");
-                                continuer = false;
-                            }
-                        }
-                    }
-                } else {
-                    possible = false;
-                }
-                i++;
-            }
-        }
-
     }
 
 
@@ -599,23 +462,34 @@ function moveBomb(bomb) {
             break;
     }
 
-    if (!(tab[newX][newY] == "x")) {
-        // si la case suivante est un x on deplace la bombe
-        bomb.x = newX;
-        bomb.y = newY;
+    if ( newX > 0 && newX < tab.length && newY > 0 && newY < tab[0].length) {
+        console.log(tab[newX][newY]);
+        if (tab[newX][newY] == "x" ) {
+            bomb.x = newX;
+            bomb.y = newY;
+        }  
     }
 }
 
-function launchGame()
-{
-    var btn = document.querySelector(".btn");
-    btn.style.display = "none";
-    var canvas = document.querySelector(".gameP");
-    console.log("ici");
-    canvas.style.display = "block";
+animationLoop();
 
-    animationLoop();
+// fonction explosionMaxiBomb
+function explosionCase(x, y) {
+    try {
+        if (tab[x][y] == "B") {
+            tab[x][y] = "x";
+        } else if (tab[x][y] == "J") {
+            for (var k = 0; k < playerList.length; k++) {
+                if ((playerList[k].x == x) && (playerList[k].y == y)) {
+                    playerList[k].pv--;
+                    if (playerList[k].pv == 0) {
+                        continuer = false;
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.log("dehors");
+    }
 }
-
-
 
