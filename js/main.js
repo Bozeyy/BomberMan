@@ -153,6 +153,8 @@ class Player {
         this.direction = "droite"    
         this.devant = true;       
         this.nbBombLancer = 0;
+        this.time = 0;
+        this.poser = false;
     }
 }
 
@@ -205,6 +207,7 @@ function afficherTabGraphique(tab) {
                 c.drawImage(imgP1AKG, playerList[i].y*tailleCase, playerList[i].x*tailleCase, tailleCase, tailleCase);
             }
         }
+
     }
 
     // afficher les pv des deux joeurs
@@ -249,6 +252,8 @@ const animationLoop= () => {
     c.clearRect(0, 0, world.width, world.height);
     if (continuer) {
         afficherTabGraphique(tab);
+        player1.time++;
+        player2.time++;
         // essayer d'ajouter 1 a chaque time de chaque bombe
         for (var i = 0; i < bombList.length; i++) {
             bombList[i].time++;
@@ -331,20 +336,28 @@ addEventListener('keydown', ({key}) => {
             movePlayer("right", player1);
             break;
         case 'e':
-            player1.nbBombLancer++;
-            if (player1.nbBombLancer%5 == 0) {
-                const bomb = new Bomb(player1.x, player1.y, player1, false, true);
-                bombList.push(bomb);
-                console.log(bomb);
-            } else {
-                const bomb = new Bomb(player1.x, player1.y, player1, false, false);
-                bombList.push(bomb);
-                console.log(bomb);
+            if (player1.time > 25 || !player1.poser) {
+                player1.nbBombLancer++;
+                if (player1.nbBombLancer%5 == 0) {
+                    const bomb = new Bomb(player1.x, player1.y, player1, false, true);
+                    bombList.push(bomb);
+                    console.log(bomb);
+                } else {
+                    const bomb = new Bomb(player1.x, player1.y, player1, false, false);
+                    bombList.push(bomb);
+                    console.log(bomb);
+                }
+                player1.time = 0;
+                player1.poser = true;
             }
             break;
         case 'a':
-            const bomb1 = new Bomb(player1.x, player1.y, player1, true, false);
-            bombList.push(bomb1);
+            if (player1.time > 25 || !player1.poser) {
+                const bomb1 = new Bomb(player1.x, player1.y, player1, true, false);
+                bombList.push(bomb1);
+                player1.time = 0;
+                player1.poser = true;
+            } 
             break;
         case 'o':
             player2.direction = "haut";
@@ -365,18 +378,26 @@ addEventListener('keydown', ({key}) => {
             movePlayer("right", player2);
             break;
         case 'p':
-            player2.nbBombLancer++;
-            if ( player2.nbBombLancer%5 == 0) {
-                const bomb2 = new Bomb(player2.x, player2.y, player2, false, true);
-                bombList.push(bomb2);
-            } else {
-                const bomb2 = new Bomb(player2.x, player2.y, player2, false, false);
-                bombList.push(bomb2);
+            if (player2.time > 25 || !player2.poser) {
+                player2.nbBombLancer++;
+                if ( player2.nbBombLancer%5 == 0) {
+                    const bomb2 = new Bomb(player2.x, player2.y, player2, false, true);
+                    bombList.push(bomb2);
+                } else {
+                    const bomb2 = new Bomb(player2.x, player2.y, player2, false, false);
+                    bombList.push(bomb2);
+                }
+                player2.time = 0;
+                player2.poser = true;
             }
             break;
         case 'i':
-            const bomb3 = new Bomb(player2.x, player2.y, player2, true);
-            bombList.push(bomb3);
+            if (player2.time > 25 || !player2.poser) {
+                const bomb3 = new Bomb(player2.x, player2.y, player2, true);
+                bombList.push(bomb3);
+                player2.time = 0;
+                player2.poser = true;
+            }
             break;
     }
 });
