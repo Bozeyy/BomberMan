@@ -42,6 +42,12 @@ imgHeart.src = "img/Heart.png";
 var imgBomb = new Image();
 imgBomb.src = "img/PinkBomb.png";
 
+var imgBombLow = new Image();
+imgBombLow.src = "img/YellowBomb.png";
+
+var imgBombRed = new Image();
+imgBombRed.src = "img/RedBomb.png";
+
 
 
 
@@ -227,7 +233,13 @@ function afficherTabGraphique(tab) {
     // pour chaque bombe dans la liste de bombes
     for (var i = 0; i < bombList.length; i++) {
         if (bombList[i].explosion == false) {
-            c.drawImage(imgBomb, bombList[i].y*tailleCase+12, bombList[i].x*tailleCase+12, tailleCase/2, tailleCase/2);
+            if (bombList[i].time < 90) {
+                c.drawImage(imgBomb, bombList[i].y*tailleCase+12-(bombList[i].time/8), bombList[i].x*tailleCase+12-(bombList[i].time/8), tailleCase/2+(bombList[i].time/4), tailleCase/2+(bombList[i].time/4));
+            } else if (bombList[i].time < 180) {
+                c.drawImage(imgBombLow, bombList[i].y*tailleCase+12-(bombList[i].time/8), bombList[i].x*tailleCase+12-(bombList[i].time/8), tailleCase/2+(bombList[i].time/4), tailleCase/2+(bombList[i].time/4));
+            } else {
+                c.drawImage(imgBombRed, bombList[i].y*tailleCase+12-(bombList[i].time/8), bombList[i].x*tailleCase+12-(bombList[i].time/8), tailleCase/2+(bombList[i].time/4), tailleCase/2+(bombList[i].time/4));
+            }
         } 
         if (bombList[i].explosion == true && bombList[i].maxiBomb == false) {
             c.drawImage(imgExplosion, bombList[i].y*tailleCase-50, bombList[i].x*tailleCase-50, tailleCase*3, tailleCase*3);
@@ -515,9 +527,7 @@ function explosionCase(x, y) {
 }
 
 
-<<<<<<< HEAD
 
-=======
 // fonction dessiner maxiBomb
 function dessinerMaxiBomb(bomb) {
 
@@ -533,5 +543,3 @@ function dessinerMaxiBomb(bomb) {
     }
 
 }
->>>>>>> 45dc8f0acd27dc1042896f11c12a6b7ea84ab034
-
