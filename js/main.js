@@ -228,8 +228,10 @@ function afficherTabGraphique(tab) {
         if (bombList[i].explosion == false) {
             c.drawImage(imgBomb, bombList[i].y*tailleCase+12, bombList[i].x*tailleCase+12, tailleCase/2, tailleCase/2);
         } 
-        if (bombList[i].explosion == true){
+        if (bombList[i].explosion == true && bombList[i].maxiBomb == false) {
             c.drawImage(imgExplosion, bombList[i].y*tailleCase-50, bombList[i].x*tailleCase-50, tailleCase*3, tailleCase*3);
+        } else if (bombList[i].explosion == true && bombList[i].maxiBomb == true) {
+            dessinerMaxiBomb(bombList[i]);
         }
     }
     
@@ -409,11 +411,10 @@ function exploserBomb(bomb) {
         // animation de l'explosion
         //c.fillStyle = 'orange';
         //c.fillRect(bomb.y*50, bomb.x*50, 150, 150);
-        var img = new Image();
-        img.src = "img/Explosion.png";
-        c.drawImage(img, bomb.y*tailleCase, bomb.x*tailleCase, 150, 150);
+        c.drawImage(imgExplosion, bomb.y*tailleCase-(tailleCase*1.5), bomb.x*tailleCase-(tailleCase*1.5), 150, 150);
         bomb.explosion = true;
     } else if (bomb.maxiBomb) {
+        bomb.explosion = true;
         for (var i = -3; i < 4; i++) {
             explosionCase(bomb.x, bomb.y+i);
         }
@@ -488,8 +489,26 @@ function explosionCase(x, y) {
                 }
             }
         }
+        // dessiner du rouge sur cette case
     } catch (e) {
         console.log("dehors");
     }
+}
+
+
+// fonction dessiner maxiBomb
+function dessinerMaxiBomb(bomb) {
+
+    if (bomb.time>100) {
+        for (var i = -3; i < 4; i++) {
+            c.fillStyle = 'yellow';
+            c.fillRect(bomb.y*tailleCase-(i*tailleCase), bomb.x*tailleCase, tailleCase, tailleCase);
+            c.fillRect(bomb.y*tailleCase, bomb.x*tailleCase-(i*tailleCase), tailleCase, tailleCase);
+            c.fillStyle = 'orange';
+            c.fillRect(bomb.y*tailleCase-(i*tailleCase), bomb.x*tailleCase+tailleCase/4, tailleCase, tailleCase/2);
+            c.fillRect(bomb.y*tailleCase+tailleCase/4, bomb.x*tailleCase-(i*tailleCase), tailleCase/2, tailleCase);
+        }
+    }
+
 }
 
