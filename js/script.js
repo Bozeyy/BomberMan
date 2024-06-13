@@ -28,7 +28,7 @@ async function lancerQuiz(fichier) {
     // Importer les questions depuis le fichier JavaScript
     let questions;
     try {
-        questions = await import('./' + fichier);
+        questions = await import('../questionnaires/' + fichier);
         questions = questions.default; // Since import returns a module object
     } catch (error) {
         console.error('Erreur lors du chargement du fichier:', error);
