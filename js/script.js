@@ -18,20 +18,24 @@ let explication = document.getElementById('explication');
 
 // fonction lancerQuiz
 async function lancerQuiz(fichier) {
+    console.log("lancerQuiz");
     // on commence par cacher la div de classe quiz
     document.querySelector('.choice_quiz').style.display = 'none';
     
     document.querySelector('.quiz_game').style.display = 'flex';
 
-    // on charge le fichier json
-    await fetch("../questionnaires/" + fichier)
-        .then(response => response.json())
-        .then(data => {
-            // on récupère les questions
-            listeQuestions = data.questions; // Ensure you access the correct property
-        });
+    console.log("questions");
+    // Importer les questions depuis le fichier JavaScript
+    let questions;
+    try {
+        questions = await import('../questionnaires/' + fichier);
+        questions = questions.default; // Since import returns a module object
+    } catch (error) {
+        console.error('Erreur lors du chargement du fichier:', error);
+        return;
+    }
 
-    console.log(listeQuestions);
+    listeQuestions = questions;
     indexQuestion = -1;
 
     // on mélange les questions
