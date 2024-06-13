@@ -1,0 +1,103 @@
+html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #333;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#visual {
+    position: absolute;
+    height: 120%;
+    width: 120%;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    top: 0;
+}
+
+
+.game {
+    z-index: 2;
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+#game {
+    width: 100%;
+    height: 100%;
+}
+
+.btn {
+    z-index: 5;
+    position: absolute;
+    background-color: rgb(67, 25, 25);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+
+.main {
+    width: 100%;
+    height: 90%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.left-part {
+    height: 100%;
+    width: 20%;
+    margin-left: 3em;
+}
+
+.key {
+    display: flex;
+    color: #fff;
+    font-family: sans-serif;
+    align-items: center;
+    font-size: 1em;
+}
+
+.key h1 {
+    border: solid 1px #fff;
+    padding: 4px;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+.right-part {
+    height: 100%;
+    width: 20%;
+    padding-left: 3em;
+}
+
