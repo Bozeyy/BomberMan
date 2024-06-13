@@ -78,9 +78,23 @@ function nextQuestion() {
 function checkAnswer(index) {
     const correct = listeQuestions[indexQuestion].BonneReponse;
     if (listeQuestions[indexQuestion].Reponses[index] === correct) {
-        alert('Correct!');
+        // on met le fond de html en vert pendant 1 seconde
+        document.body.style.backgroundColor = 'green';        
+        setTimeout(() => {
+            document.body.style.backgroundColor = 'white';
+        }, 1000);
     } else {
-        alert('Incorrect!');
+        // on met le fond de html en rouge pendant 1 seconde
+        document.body.style.backgroundColor = 'red';
+        setTimeout(() => {
+            document.body.style.backgroundColor = 'white';
+        }, 1000);
     }
     explication.innerHTML = listeQuestions[indexQuestion].Explication;    
+}
+
+function showBtn(cls) {
+    document.querySelectorAll("."+cls).forEach(btn => {
+        btn.style.display = 'flex';
+    });
 }

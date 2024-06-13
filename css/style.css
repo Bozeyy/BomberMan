@@ -25,9 +25,30 @@ body {
     align-items: center;
 }
 
+.choix_cours {
+    height: 5em;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+}
+
+.choix_cours button {
+    padding: 1em;
+    font-size: 1.5em;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    margin: 1em;
+    transition: ease-in-out 0.2s;
+}   
+
+.choix_cours button:hover {
+    background-color: #f7f7f7;
+    border: solid 1px #333;
+}
+
 .quiz {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
     padding: 1em;
 }
@@ -38,6 +59,7 @@ body {
     background-color: #f1f1f1;
     border: none;
     cursor: pointer;
+    display: none;
 }
 
 .quiz button:hover {

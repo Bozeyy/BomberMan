@@ -11,10 +11,15 @@
 <body>
     <div class="choice_quiz">
         <h1>Choisissez un quiz</h1>
+        <div class="choix_cours">
+            <button onclick='showBtn("cour1")'>cour 1</button>
+            <button>cour 2</button>
+            <button>cour 3</button>
+        </div>
         <div class="quiz">
-            <button class="quiz_btn" id="quiz" onclick='lancerQuiz("cour2_part1.js")'>Cour2 part1</button>
-            <button class="quiz_btn" id="quiz" onclick='lancerQuiz("cour2_part2.js")'>Cour2 part2</button>
-            <button class="quiz_btn" id="quiz" onclick='lancerQuiz("cour2_part3.js")'>Cour2 part3</button>
+            <button class="quiz_btn cour1" id="quiz" onclick='lancerQuiz("cour2/part1.js")'>partie 1</button>
+            <button class="quiz_btn cour1" id="quiz" onclick='lancerQuiz("cour2/part2.js")'>partie 2</button>
+            <button class="quiz_btn cour1" id="quiz" onclick='lancerQuiz("cour2/part3.js")'>partie 3</button>
         </div>
     </div>
 
