@@ -1,16 +1,10 @@
 html {
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
     background-color: #ffffff;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    height: 100%;
-    width: 100%;
     overflow-x: hidden;
 }
 
@@ -29,20 +23,18 @@ body {
     height: 5em;
     display: grid;
     /* le nombre maximum par ligne cntré */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 1em;
-    padding: 1em;
+    grid-template-columns: repeat(auto-fit, minmax(2px, 1fr));
+    grid-gap: 4px;
     align-items: center; 
     justify-content: center;
 }
 
 .choix_cours button {
-    padding: 1em;
+    padding:0.5em;
     font-size: 1.5em;
     background-color: #f1f1f1;
     border: none;
     cursor: pointer;
-    margin: 1em;
     transition: ease-in-out 0.2s;
 }   
 
@@ -73,8 +65,6 @@ body {
 .quiz_game {
     display: none;
     flex-direction: column;
-    height: 100%;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -86,7 +76,7 @@ body {
     border: none;
     cursor: pointer;
     text-align: center;
-    margin: 1em;
+    margin: 2em;
     border-radius: 1em;
 }
 
@@ -95,6 +85,20 @@ body {
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
     padding: 1em 5em;
+}
+
+/* si on est en dessous de 400 px de large */
+@media (max-width: 400px) {
+    #reponses {
+        grid-template-columns: 1fr;
+        padding: 0;
+        width: 80%;
+    }
+
+    .reponse {
+        padding: 1em;
+        width: 100%;
+    }
 }
 
 #reponses button {
@@ -146,7 +150,7 @@ body {
     font-weight: 700;
     letter-spacing: .8px;
     line-height: 20px;
-    margin: 0;
+    margin-bottom: 10em;
     outline: none;
     overflow: visible;
     padding: 13px 16px;

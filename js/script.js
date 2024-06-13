@@ -52,7 +52,7 @@ async function lancerQuiz(fichier) {
 }
 
 function nextQuestion() {
-    console.log(indexQuestion + " / " + listeQuestions.length);
+    explication.innerHTML = '';
     if (indexQuestion + 1 < listeQuestions.length) {
         indexQuestion++;
         question.innerHTML = listeQuestions[indexQuestion].question;
