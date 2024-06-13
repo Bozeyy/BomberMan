@@ -3,6 +3,7 @@ html {
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
+    background-color: #ffffff;
 }
 
 body {
@@ -15,6 +16,13 @@ body {
 
 .choice_quiz {
     padding: 1em;
+}
+
+.choice_quiz h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .quiz {
@@ -39,11 +47,11 @@ body {
 .quiz_game {
     display: none;
     flex-direction: column;
-    height: 100%;  
+    height: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-} 
+}
 
 #question {
     padding: 1em;
@@ -60,21 +68,104 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 1em;
-    padding: 5em;
+    padding: 1em 5em;
 }
 
 #reponses button {
-    padding: 0.5em;
-    font-size: 1.5em;
-    background-color: #f1f1f1;
-    border: none;
+    background-color: #13aa52;
+    border: 1px solid #13aa52;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: #fff;
     cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
+#reponses button:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+    #reponses button {
+        padding: 10px 30px;
+    }
+}
+
+
 #next {
-    padding: 1em;
-    font-size: 1.5em;
-    background-color: #f1f1f1;
-    border: none;
+    appearance: button;
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
     cursor: pointer;
+    display: inline-block;
+    font-family: din-round, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 15em;
+}
+
+#next:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+#next:main,
+#next:focus {
+    user-select: auto;
+}
+
+#next:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}
+
+#next:disabled {
+    cursor: auto;
+}
+
+#next:active {
+    border-width: 4px 0 0;
+    background: none;
 }
