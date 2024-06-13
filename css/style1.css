@@ -27,7 +27,11 @@ body {
 
 .choix_cours {
     height: 5em;
-    display: flex;
+    display: grid;
+    /* le nombre maximum par ligne cntré */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1em;
+    padding: 1em;
     align-items: center; 
     justify-content: center;
 }
