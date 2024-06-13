@@ -94,6 +94,9 @@ function checkAnswer(index) {
 }
 
 function showBtn(cls) {
+    document.querySelectorAll(".quiz_btn").forEach(btn => {
+        btn.style.display = 'none';
+    });
     document.querySelectorAll("."+cls).forEach(btn => {
         btn.style.display = 'flex';
     });

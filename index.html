@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ACcueil</title>
+    <title>Accueil</title>
 
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -12,14 +12,19 @@
     <div class="choice_quiz">
         <h1>Choisissez un quiz</h1>
         <div class="choix_cours">
-            <button onclick='showBtn("cour1")'>cour 1</button>
-            <button>cour 2</button>
-            <button>cour 3</button>
+            <button onclick='showBtn("cour2")'>cour 2</button>
+            <button onclick='showBtn("cour3")'>cour 3</button>
+            <button onclick='showBtn("cour4")'>cour 4</button>
+            <button onclick='showBtn("cour5")'>cour 5</button>
         </div>
         <div class="quiz">
-            <button class="quiz_btn cour1" id="quiz" onclick='lancerQuiz("cour2/part1.js")'>partie 1</button>
-            <button class="quiz_btn cour1" id="quiz" onclick='lancerQuiz("cour2/part2.js")'>partie 2</button>
-            <button class="quiz_btn cour1" id="quiz" onclick='lancerQuiz("cour2/part3.js")'>partie 3</button>
+            <button class="quiz_btn cour2" id="quiz" onclick='lancerQuiz("cour2/part1.js")'>partie 1</button>
+            <button class="quiz_btn cour2" id="quiz" onclick='lancerQuiz("cour2/part2.js")'>partie 2</button>
+            <button class="quiz_btn cour2" id="quiz" onclick='lancerQuiz("cour2/part3.js")'>partie 3</button>
+            <button class="quiz_btn cour3" id="quiz" onclick='lancerQuiz("cour3/full.js")'>Full cour</button>
+            <button class="quiz_btn cour4" id="quiz" onclick='lancerQuiz("cour4/full.js")'>Full cour</button>
+            <button class="quiz_btn cour5" id="quiz" onclick='lancerQuiz("cour5/part1.js")'>Partie 1</button>
+            <button class="quiz_btn cour5" id="quiz" onclick='lancerQuiz("cour5/part2.js")'>Partie 2</button>
         </div>
     </div>
 
