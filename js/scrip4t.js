@@ -100,4 +100,30 @@ function showBtn(cls) {
     document.querySelectorAll("."+cls).forEach(btn => {
         btn.style.display = 'flex';
     });
+    document.querySelector(".quiz").style.display = 'grid';
+}
+
+function showMatiere(classMatiere) {
+    document.querySelectorAll(".choix_matiere").forEach(matiere => {
+        matiere.style.display = 'none';
+    });
+    document.querySelector("."+classMatiere).style.display = 'flex';
+}
+
+function showMenu() {
+    document.querySelectorAll(".choix_matiere").forEach(matiere => {
+        matiere.style.display = 'grid';
+    });
+    
+    document.querySelector(".choix_cours").style.display = 'none';
+    document.querySelectorAll(".quiz_btn").forEach(btn => {
+        btn.style.display = 'none';
+    });
+    document.querySelector(".quiz_game").style.display = 'none';
+
+    document.querySelectorAll(".choix_matiere_btn").forEach(quiz => {
+        quiz.style.display = 'block';
+    });
+
+    document.querySelector('.choice_quiz').style.display = 'block';
 }

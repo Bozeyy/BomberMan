@@ -1,0 +1,328 @@
+html {
+    background-color: #ffffff;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+header {
+    background-color: #151515;
+    padding: 1em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+header button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    position: relative;
+}
+
+header button i {
+    color: #fff;
+    font-size: 1.5em;
+}
+
+
+.choice_quiz {
+    padding: 1em;
+}
+
+.choice_quiz h1 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.choix_matiere {
+    display: grid;
+    /* un item par ligne */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1em;
+}
+
+.choix_matiere button {
+    padding: 15px 20px;
+    border: none;
+    outline: none;
+    background-color: #151515;
+    color: #eee;
+    border-radius: 7px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease-out;
+}
+
+.choix_matiere button:hover {
+    transform: translateY(-3px);
+}
+
+
+
+
+.choix_cours {
+    overflow-x: scroll;
+    /* Assure que la scrollbar est toujours visible */
+    display: none;
+    scrollbar-width: auto;
+    /* Pour les navigateurs qui supportent cette propriété */
+    scrollbar-color: #536DFE #0f3cd1;
+    /* Personnalisation des couleurs */
+    border-radius: 10px;
+    padding: 1em;
+    background-color: #1899D6;
+    border: solid 3px black;
+}
+
+/* Personnalisation de la scrollbar pour les navigateurs Webkit */
+.choix_cours::-webkit-scrollbar {
+    height: 12px;
+    /* Hauteur de la scrollbar */
+    background-color: #0f3cd1;
+    /* Couleur de fond de la scrollbar */
+    border-radius: 10px;
+}
+
+.choix_cours::-webkit-scrollbar-thumb {
+    background-color: #536DFE;
+    /* Couleur du pouce (partie mobile) de la scrollbar */
+    border-radius: 10px;
+    border: 3px solid #0f3cd1;
+    /* Ajouter une bordure autour du pouce */
+}
+
+.choix_cours button {
+    align-items: center;
+    appearance: none;
+    background-color: #EEF2FF;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: #536DFE;
+    box-shadow: rgba(83, 109, 254, 0.2) 0 2px 4px, rgba(83, 109, 254, 0.15) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #536DFE;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono", monospace;
+    height: 56px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 24px;
+    padding-right: 24px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    font-size: 20px;
+    margin: 0.5em;
+    min-width: 5em;
+}
+
+.choix_cours button:focus {
+    outline: none;
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(83, 109, 254, 0.4) 0 2px 4px, rgba(83, 109, 254, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+}
+
+.choix_cours button:hover {
+    box-shadow: rgba(83, 109, 254, 0.3) 0 4px 8px, rgba(83, 109, 254, 0.2) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+}
+
+.choix_cours button:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+}
+
+
+.quiz {
+    display: none;
+    grid-gap: 1em;
+    padding: 1em;
+}
+
+.quiz button {
+    background: #fbca1f;
+    font-family: inherit;
+    padding: 0.6em 1.3em;
+    font-weight: 900;
+    font-size: 18px;
+    border: 3px solid black;
+    border-radius: 0.4em;
+    box-shadow: 0.1em 0.1em;
+    cursor: pointer;
+}
+
+.quiz button:hover {
+    transform: translate(-0.05em, -0.05em);
+    box-shadow: 0.15em 0.15em;
+}
+
+.quiz button:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+}
+
+
+.quiz_game {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#question {
+    padding: 1em;
+    font-size: 2em;
+    background-color: #e1e1e1;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin: 2em;
+    border-radius: 1em;
+}
+
+#reponses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1em;
+    padding: 1em 5em;
+}
+
+/* si on est en dessous de 400 px de large */
+@media (max-width: 400px) {
+    #reponses {
+        grid-template-columns: 1fr;
+        padding: 0;
+        width: 80%;
+    }
+
+    .reponse {
+        padding: 1em;
+        width: 100%;
+    }
+
+    #question {
+        font-size: 1em;
+    }
+
+    #explication {
+        padding: 2em;
+    }
+}
+
+#reponses button {
+    background-color: #13aa52;
+    border: 1px solid #13aa52;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, .1) 0 2px 4px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Akzidenz Grotesk BQ Medium", -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    outline: 0;
+    padding: 10px 25px;
+    text-align: center;
+    transform: translateY(0);
+    transition: transform 150ms, box-shadow 150ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+#reponses button:hover {
+    box-shadow: rgba(0, 0, 0, .15) 0 3px 9px 0;
+    transform: translateY(-2px);
+}
+
+@media (min-width: 768px) {
+    #reponses button {
+        padding: 10px 30px;
+    }
+}
+
+
+#next {
+    appearance: button;
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin-bottom: 10em;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 15em;
+}
+
+#next:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+#next:main,
+#next:focus {
+    user-select: auto;
+}
+
+#next:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+}
+
+#next:disabled {
+    cursor: auto;
+}
+
+#next:active {
+    border-width: 4px 0 0;
+    background: none;
+}

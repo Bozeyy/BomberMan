@@ -1,46 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accueil</title>
 
-    <link rel="stylesheet" href="./css/style3.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./css/style4.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <button onclick="showMenu()"><i class="fa-solid fa-arrow-left"></i></button>
+    </header>
     <div class="choice_quiz">
-        <h1>Choisissez un quiz</h1>
-        <div class="choix_cours">
-            <button onclick='showBtn("cour2")'>cour 2</button>
-            <button onclick='showBtn("cour3")'>cour 3</button>
-            <button onclick='showBtn("cour4")'>cour 4</button>
-            <button onclick='showBtn("cour5")'>cour 5</button>
-        </div>
-        <div class="quiz">
-            <button class="quiz_btn cour2" id="quiz" onclick='lancerQuiz("cour2/part1.js")'>partie 1</button>
-            <button class="quiz_btn cour2" id="quiz" onclick='lancerQuiz("cour2/part2.js")'>partie 2</button>
-            <button class="quiz_btn cour2" id="quiz" onclick='lancerQuiz("cour2/part3.js")'>partie 3</button>
-            <button class="quiz_btn cour3" id="quiz" onclick='lancerQuiz("cour3/full.js")'>Full cour</button>
-            <button class="quiz_btn cour4" id="quiz" onclick='lancerQuiz("cour4/full.js")'>Full cour</button>
-            <button class="quiz_btn cour5" id="quiz" onclick='lancerQuiz("cour5/part1.js")'>Partie 1</button>
-            <button class="quiz_btn cour5" id="quiz" onclick='lancerQuiz("cour5/part2.js")'>Partie 2</button>
-        </div>
+      <h1 id="choix_title">Choisissez une matière</h1>
+      <div class="choix_matiere">
+        <button classe="choix_matiere_btn" onclick='showMatiere("eg23")'>EG23</button>
+        <button classe="choix_matiere_btn" onclick='showMatiere("if02")'>IF02</button>
+      </div>
+      <div class="choix_cours eg23">
+        <button onclick='showBtn("cour2")'>cour 2</button>
+        <button onclick='showBtn("cour3")'>cour 3</button>
+        <button onclick='showBtn("cour4")'>cour 4</button>
+        <button onclick='showBtn("cour5")'>cour 5</button>
+      </div>
+      <div class="quiz">
+        <button
+          class="quiz_btn cour2"
+          id="quiz"
+          onclick='lancerQuiz("cour2/part1.js")'
+        >
+          partie 1
+        </button>
+        <button
+          class="quiz_btn cour2"
+          id="quiz"
+          onclick='lancerQuiz("cour2/part2.js")'
+        >
+          partie 2
+        </button>
+        <button
+          class="quiz_btn cour2"
+          id="quiz"
+          onclick='lancerQuiz("cour2/part3.js")'
+        >
+          partie 3
+        </button>
+        <button
+          class="quiz_btn cour3"
+          id="quiz"
+          onclick='lancerQuiz("cour3/full.js")'
+        >
+          Full cour
+        </button>
+        <button
+          class="quiz_btn cour4"
+          id="quiz"
+          onclick='lancerQuiz("cour4/full.js")'
+        >
+          Full cour
+        </button>
+        <button
+          class="quiz_btn cour5"
+          id="quiz"
+          onclick='lancerQuiz("cour5/part1.js")'
+        >
+          Partie 1
+        </button>
+        <button
+          class="quiz_btn cour5"
+          id="quiz"
+          onclick='lancerQuiz("cour5/part2.js")'
+        >
+          Partie 2
+        </button>
+      </div>
     </div>
 
     <div class="quiz_game">
-        <h1 id="question">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci, inventore?</h1>
-        <div id="reponses">
-            <button class="reponse" id="reponse1" onclick="checkAnswer(this)">Reponse 1</button>
-            <button class="reponse" id="reponse2" onclick="checkAnswer(this)">Reponse 2</button>
-            <button class="reponse" id="reponse3" onclick="checkAnswer(this)">Reponse 3</button>
-            <button class="reponse" id="reponse4" onclick="checkAnswer(this)">Reponse 4</button>
-        </div>
-        <p id="explication">
-        </p>
-        <button class="next" id="next" onclick="nextQuestion()">Suivant</button>
+      <h1 id="question">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci,
+        inventore?
+      </h1>
+      <div id="reponses">
+        <button class="reponse" id="reponse1" onclick="checkAnswer(this)">
+          Reponse 1
+        </button>
+        <button class="reponse" id="reponse2" onclick="checkAnswer(this)">
+          Reponse 2
+        </button>
+        <button class="reponse" id="reponse3" onclick="checkAnswer(this)">
+          Reponse 3
+        </button>
+        <button class="reponse" id="reponse4" onclick="checkAnswer(this)">
+          Reponse 4
+        </button>
+      </div>
+      <p id="explication"></p>
+      <button class="next" id="next" onclick="nextQuestion()">Suivant</button>
     </div>
 
-    <script src="./js/script3.js"></script>
-</body>
+    <script src="./js/script4.js"></script>
+  </body>
 </html>
