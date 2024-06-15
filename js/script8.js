@@ -138,7 +138,9 @@ function showMenu() {
         matiere.style.display = 'grid';
     });
     
-    document.querySelector(".choix_cours").style.display = 'none';
+    document.querySelectorAll(".choix_cours").forEach(cours => {
+        cours.style.display = 'none';
+    });
     document.querySelectorAll(".quiz_btn").forEach(btn => {
         btn.style.display = 'none';
     });
