@@ -15,6 +15,14 @@ let question = document.getElementById('question');
 let reponses = document.getElementById('reponses');
 // p d'id explication
 let explication = document.getElementById('explication');
+// h1 score de classe quiz_score
+let score = document.querySelector('.quiz_score');
+let points = 0;
+let repondu = false;
+let total = 0;
+// p index question de class index_question
+let index = document.querySelector('.index_question');
+
 
 // fonction lancerQuiz
 async function lancerQuiz(fichier) {
@@ -45,6 +53,11 @@ async function lancerQuiz(fichier) {
         question.Reponses = shuffle(question.Reponses);
     });
 
+    total = listeQuestions.length;
+    points = 0;
+    score.innerHTML = "Score : "+ points + '/' + total;
+
+
     // on affiche la taille du tableau
     console.log(listeQuestions.length);
 
@@ -52,9 +65,11 @@ async function lancerQuiz(fichier) {
 }
 
 function nextQuestion() {
+    repondu = false;
     explication.innerHTML = '';
     if (indexQuestion + 1 < listeQuestions.length) {
         indexQuestion++;
+        index.innerHTML = 'Question ' + (indexQuestion + 1) + '/' + total;
         question.innerHTML = listeQuestions[indexQuestion].question;
         reponses.innerHTML = '';
         // pour chaque reponse
@@ -83,12 +98,20 @@ function checkAnswer(index) {
         setTimeout(() => {
             document.body.style.backgroundColor = 'white';
         }, 1000);
+        if (!repondu) {
+            points++;
+            repondu = true;
+            score.innerHTML = "Score : "+ points + '/' + total;
+        }
     } else {
         // on met le fond de html en rouge pendant 1 seconde
         document.body.style.backgroundColor = 'red';
         setTimeout(() => {
             document.body.style.backgroundColor = 'white';
         }, 1000);
+        if (!repondu) {
+            repondu = true;
+        }
     }
     explication.innerHTML = listeQuestions[indexQuestion].Explication;    
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Accueil</title>
 
-    <link rel="stylesheet" href="./css/style6.css" />
+    <link rel="stylesheet" href="./css/style7.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -16,7 +16,6 @@
     />
   </head>
   <body>
-    <script src="./js/script6.js"></script>
     <header>
       <button onclick="showMenu()">
         <i class="fa-solid fa-arrow-left"></i>
@@ -42,56 +41,86 @@
         <button
           class="quiz_btn cour2"
           id="quiz"
-          onclick='lancerQuiz("cour2/part1.js")'
+          onclick='lancerQuiz("eg23/cour2/part1.js")'
         >
           partie 1
         </button>
         <button
           class="quiz_btn cour2"
           id="quiz"
-          onclick='lancerQuiz("cour2/part2.js")'
+          onclick='lancerQuiz("eg23/cour2/part2.js")'
         >
           partie 2
         </button>
         <button
           class="quiz_btn cour2"
           id="quiz"
-          onclick='lancerQuiz("cour2/part3.js")'
+          onclick='lancerQuiz("eg23/cour2/part3.js")'
         >
           partie 3
         </button>
         <button
+          class="quiz_btn cour2"
+          id="quiz"
+          onclick='lancerQuiz("eg23/cour2/full_course.js")'
+        >
+          Cour entier
+        </button>
+        <button
           class="quiz_btn cour3"
           id="quiz"
-          onclick='lancerQuiz("cour3/full.js")'
+          onclick='lancerQuiz("eg23/cour3/full.js")'
+        >
+          Full cour
+        </button>
+        <button
+          class="quiz_btn cour3"
+          id="quiz"
+          onclick='lancerQuiz("eg23/cour3/full2.js")'
+        >
+          Full cour 2
+        </button>
+        <button
+          class="quiz_btn cour4"
+          id="quiz"
+          onclick='lancerQuiz("eg23/cour4/full.js")'
         >
           Full cour
         </button>
         <button
           class="quiz_btn cour4"
           id="quiz"
-          onclick='lancerQuiz("cour4/full.js")'
+          onclick='lancerQuiz("eg23/cour4/full2.js")'
         >
-          Full cour
+          Full cour 2
         </button>
         <button
           class="quiz_btn cour5"
           id="quiz"
-          onclick='lancerQuiz("cour5/part1.js")'
+          onclick='lancerQuiz("eg23/cour5/part1.js")'
         >
           Partie 1
         </button>
         <button
           class="quiz_btn cour5"
           id="quiz"
-          onclick='lancerQuiz("cour5/part2.js")'
+          onclick='lancerQuiz("eg23/cour5/part2.js")'
         >
           Partie 2
+        </button>
+        <button
+          class="quiz_btn cour5"
+          id="quiz"
+          onclick='lancerQuiz("eg23/cour5/full.js")'
+        >
+          Full cour
         </button>
       </div>
     </div>
 
     <div class="quiz_game">
+      <h1 class="quiz_score">Score : 0/x</h1>
+      <p class="index_question">Question : 0</p>
       <h1 id="question">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci,
         inventore?
@@ -113,5 +142,6 @@
       <p id="explication"></p>
       <button class="next" id="next" onclick="nextQuestion()">Suivant</button>
     </div>
+    <script src="./js/script7.js"></script>
   </body>
 </html>
