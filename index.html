@@ -30,6 +30,9 @@
         <button classe="choix_matiere_btn" onclick='showMatiere("if02")'>
           IF02
         </button>
+        <button classe="choix_matiere_btn" onclick='showMatiere("se02")'>
+          SE02
+        </button>
       </div>
       <div class="choix_cours eg23">
         <button onclick='showBtn("cour2_eg23")'>cour 2</button>
@@ -42,6 +45,10 @@
         <button onclick='showBtn("cour2_if02")'>cour 2</button>
         <button onclick='showBtn("cour3_if02")'>cour 3</button>
         <button onclick='showBtn("cour4_if02")'>cour 4</button>
+      </div>
+      <div class="choix_cours se02">
+        <button onclick='showBtn("cour1_se02")'>cour 1</button>
+        <button onclick='showBtn("cour2_se02")'>cour 2</button>
       </div>
       <div class="quiz">
 
@@ -159,6 +166,29 @@
           class="quiz_btn cour2_if02"
           id="quiz"
           onclick='lancerQuiz("if02/cour2/part1.js")'
+        >
+          partie 1
+        </button>
+
+        <!-- SEO2 -->
+        <button
+          class="quiz_btn cour1_se02"
+          id="quiz"
+          onclick='lancerQuiz("se02/cour1/cour1.js")'
+        >
+          partie 1
+        </button>
+        <button
+          class="quiz_btn cour1_se02"
+          id="quiz"
+          onclick='lancerQuiz("se02/cour1/full.js")'
+        >
+          full
+        </button>
+        <button
+          class="quiz_btn cour2_se02"
+          id="quiz"
+          onclick='lancerQuiz("se02/cour2/part1.js")'
         >
           partie 1
         </button>
