@@ -1,224 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Accueil</title>
+    <title>Document</title>
 
-    <link rel="stylesheet" href="./css/style8.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="./css/StyleCard.css" />
+
+    <script type="module" src="./index.js"></script>
   </head>
   <body>
-    <header>
-      <button onclick="showMenu()">
-        <i class="fa-solid fa-arrow-left"></i>
-      </button>
-    </header>
-    <div class="choice_quiz">
-      <h1 id="choix_title">Choisissez une matière</h1>
-      <div class="choix_matiere">
-        <button classe="choix_matiere_btn" onclick='showMatiere("eg23")'>
-          EG23
-        </button>
-        <button classe="choix_matiere_btn" onclick='showMatiere("if02")'>
-          IF02
-        </button>
-        <button classe="choix_matiere_btn" onclick='showMatiere("se02")'>
-          SE02
-        </button>
-      </div>
-      <div class="choix_cours eg23">
-        <button onclick='showBtn("cour2_eg23")'>cour 2</button>
-        <button onclick='showBtn("cour3_eg23")'>cour 3</button>
-        <button onclick='showBtn("cour4_eg23")'>cour 4</button>
-        <button onclick='showBtn("cour5_eg23")'>cour 5</button>
-      </div>
-      <div class="choix_cours if02">
-        <button onclick='showBtn("cour1_if02")'>cour 1</button>
-        <button onclick='showBtn("cour2_if02")'>cour 2</button>
-        <button onclick='showBtn("cour3_if02")'>cour 3</button>
-        <button onclick='showBtn("cour4_if02")'>cour 4</button>
-      </div>
-      <div class="choix_cours se02">
-        <button onclick='showBtn("cour1_se02")'>cour 1</button>
-        <button onclick='showBtn("cour2_se02")'>cour 2</button>
-      </div>
-      <div class="quiz">
-
-        <!-- EG23 -->
-        
-        <button
-          class="quiz_btn cour2_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour2/part1.js")'
-        >
-          partie 1
-        </button>
-        <button
-          class="quiz_btn cour2_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour2/part2.js")'
-        >
-          partie 2
-        </button>
-        <button
-          class="quiz_btn cour2_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour2/part3.js")'
-        >
-          partie 3
-        </button>
-        <button
-          class="quiz_btn cour2_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour2/full_course.js")'
-        >
-          Cour entier
-        </button>
-        <button
-          class="quiz_btn cour2_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour2/definition.js")'
-        >
-          Déinition
-        </button>
-        <button
-          class="quiz_btn cour3_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour3/full.js")'
-        >
-          Full cour
-        </button>
-        <button
-          class="quiz_btn cour3_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour3/full2.js")'
-        >
-          Full cour 2
-        </button>
-        <button
-          class="quiz_btn cour3_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour3/definition.js")'
-        >
-          Définition
-        </button>
-        <button
-          class="quiz_btn cour4_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour4/full.js")'
-        >
-          Full cour
-        </button>
-        <button
-          class="quiz_btn cour4_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour4/full2.js")'
-        >
-          Full cour 2
-        </button>
-        <button
-          class="quiz_btn cour4_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour4/definition.js")'
-        >
-          Définition
-        </button>
-        <button
-          class="quiz_btn cour5_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour5/part1.js")'
-        >
-          Partie 1
-        </button>
-        <button
-          class="quiz_btn cour5_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour5/part2.js")'
-        >
-          Partie 2
-        </button>
-        <button
-          class="quiz_btn cour5_eg23"
-          id="quiz"
-          onclick='lancerQuiz("eg23/cour5/full.js")'
-        >
-          Full cour
-        </button>
-
-        <!-- IF02 -->
-
-        <button
-          class="quiz_btn cour1_if02"
-          id="quiz"
-          onclick='lancerQuiz("if02/cour1/full.js")'
-        >
-          Full cour
-        </button>
-        <button
-          class="quiz_btn cour2_if02"
-          id="quiz"
-          onclick='lancerQuiz("if02/cour2/part1.js")'
-        >
-          partie 1
-        </button>
-
-        <!-- SEO2 -->
-        <button
-          class="quiz_btn cour1_se02"
-          id="quiz"
-          onclick='lancerQuiz("se02/cour1/cour1.js")'
-        >
-          partie 1
-        </button>
-        <button
-          class="quiz_btn cour1_se02"
-          id="quiz"
-          onclick='lancerQuiz("se02/cour1/full.js")'
-        >
-          full
-        </button>
-        <button
-          class="quiz_btn cour2_se02"
-          id="quiz"
-          onclick='lancerQuiz("se02/cour2/part1.js")'
-        >
-          partie 1
-        </button>
+    <div class="question_part">
+      <div class="card">
+        <div class="card_question">
+          <p id="card_question_p">Quelle est la capitale de la France ?</p>
+        </div>
+        <div class="card_answer hidden">
+          <p id="card_answer_p">Paris</p>
+        </div>
       </div>
     </div>
-
-    <div class="quiz_game">
-      <h1 class="quiz_score">Score : 0/x</h1>
-      <p class="index_question">Question : 0</p>
-      <h1 id="question">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci,
-        inventore?
-      </h1>
-      <div id="reponses">
-        <button class="reponse" id="reponse1" onclick="checkAnswer(this)">
-          Reponse 1
-        </button>
-        <button class="reponse" id="reponse2" onclick="checkAnswer(this)">
-          Reponse 2
-        </button>
-        <button class="reponse" id="reponse3" onclick="checkAnswer(this)">
-          Reponse 3
-        </button>
-        <button class="reponse" id="reponse4" onclick="checkAnswer(this)">
-          Reponse 4
-        </button>
-      </div>
-      <p id="explication"></p>
-      <button class="next" id="next" onclick="nextQuestion()">Suivant</button>
-    </div>
-    <script src="./js/script8.js"></script>
   </body>
 </html>

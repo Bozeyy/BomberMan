@@ -1,0 +1,56 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+h1,
+a,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.question_part {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border-radius: 50px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: 20px 20px 60px #bebebe,
+        -20px -20px 60px #ffffff;
+    padding: 1em;
+    height: 20em;
+    width:  30em;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: ease-in-out 0.2s;
+}
+
+.card:hover {
+    background: linear-gradient(145deg, #cacaca, #f0f0f0);
+    box-shadow: 20px 20px 60px #ffffff,
+        -20px -20px 60px #bebebe;
+}
+
+ /* Quand on click sur la card */
+.card:active {
+    width: 28.5em;
+    height: 18.5em;
+}
+
+.card p {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #333;
+}
