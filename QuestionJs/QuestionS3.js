@@ -1,4 +1,4 @@
-const flashcards = {
+const flashcardsS3 = {
     "flashcards": [
       {
         "question": "Qu'est-ce qu'un commerçant ?",
@@ -95,4 +95,4 @@ const flashcards = {
     ]
   }
   
-  export default flashcards;
+  export default flashcardsS3;

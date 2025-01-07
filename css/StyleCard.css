@@ -12,12 +12,13 @@ a,
 p {
     margin: 0;
     padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .question_part {
+    display: none;
     height: 100%;
     margin: 0;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -53,4 +54,80 @@ p {
     font-size: 1.5em;
     font-weight: 600;
     color: #333;
+}
+
+Header {
+    background-color: black;
+    height: 3em;
+    display: flex;
+    align-items: center;
+}
+
+Header button {
+    margin-left: 1em;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+
+.choose_session {
+    margin: 1em;
+    display: none;
+    background-color: rgb(220, 109, 109);
+    padding: 1em;
+    /* Il y'a un scroll horizontale pour choisir le cours */
+    overflow-x: auto;
+}
+
+.choose_session button {
+    background-color: #333;
+    margin: 0 0.5em;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+    dis
+}
+
+.choose_course {
+    margin: 1em;
+    display: flex;
+    background-color: rgb(220, 109, 109);
+    padding: 1em;
+    /* Il y'a un scroll horizontale pour choisir le cours */
+    overflow-x: auto;
+}
+
+.choose_course button {
+    background-color: #333;
+    margin: 0 0.5em;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+
+
+/* CheckPoint pour quand on passe sur téléphone */
+@media screen and (max-width: 600px) {
+    .card {
+        width: 20em;
+        height: 15em;
+    }
+
+    .card p {
+        font-size: 1em;
+    }
+
+    .question_part {
+        padding: 1em;
+    }
 }
