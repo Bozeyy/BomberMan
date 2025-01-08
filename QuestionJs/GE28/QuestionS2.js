@@ -1,4 +1,4 @@
-const flashcardsS2 = {
+const flashcardsGE28S2 = {
     "flashcards": [
         {
             "question": "Quel est le principe fondamental concernant l'accès à la profession commerciale en France ?",
@@ -91,4 +91,4 @@ const flashcardsS2 = {
     ]
 };
 
-export default flashcardsS2;
+export default flashcardsGE28S2;

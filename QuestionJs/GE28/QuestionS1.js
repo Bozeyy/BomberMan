@@ -1,4 +1,4 @@
-const flashcardsS1 = {
+const flashcardsGE28S1 = {
     "flashcards": [
         {
             "question": "Quelle est la définition légale d'un commerçant selon l'article 1er du Code de commerce ?",
@@ -103,4 +103,4 @@ const flashcardsS1 = {
     ]
 }
 
-export default flashcardsS1;
+export default flashcardsGE28S1;
